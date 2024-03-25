@@ -1,0 +1,6 @@
+spring:
+  messages:
+    basename: "sfg6_shell"
+    fallback-to-system-locale: false
+    use-code-as-default-message: true
+    encoding: UTF-8

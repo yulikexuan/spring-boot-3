@@ -1,0 +1,1 @@
+{"port":8001,"maxHttpRequestHeaderSize":32767,"homePage":"https://twitter.com/yul","sessionTimeout":"PT41M22S","statisticPeriod":"P3D","maxFileSize":{"negative":false},"portsToTest":[80,8000,8080],"repetitionUnit":"SECONDS","ips":["126.32.66.28","111.229.178.175","4.16.177.175"],"locations":[{"country":"CA","province":"QC"},{"country":"US","province":"NY"}]}

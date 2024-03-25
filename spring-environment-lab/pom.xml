@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>spring.start.here</groupId>
+        <artifactId>spring-boot-3</artifactId>
+        <version>3.2.4</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>spring.start.here</groupId>
+    <artifactId>spring-environment-lab</artifactId>
+    <packaging>pom</packaging>
+
+    <name>spring-environment-lab</name>
+    <description>
+        The Lab of the Environment of Spring Boot 3 and Spring Framework 6
+    </description>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <groupId>spring.start.here</groupId>
+                <artifactId>sfg6-commons</artifactId>
+                <version>3.2.4</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <modules>
+        <module>sfg6-commons</module>
+        <module>spring-external-config</module>
+        <module>spring-profile-config</module>
+        <module>spring-beginning-end</module>
+        <module>spring-event-handling</module>
+        <module>spring-resources</module>
+        <module>spring-type-conversion</module>
+        <module>spring-i18n</module>
+    </modules>
+
+</project>

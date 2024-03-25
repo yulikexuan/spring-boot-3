@@ -1,0 +1,1 @@
+\nStatus: %{http_code}\nTotal: %{time_total} s\nContent-Type: %{content_type}\n

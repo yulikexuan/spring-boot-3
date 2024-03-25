@@ -1,0 +1,7 @@
+spring:
+  pid:
+    file: ./sfg6.pid
+    fail-on-write-error: true
+sfg6:
+  timeout: ${random.int[4,16]}
+  secret: ${random.uuid}

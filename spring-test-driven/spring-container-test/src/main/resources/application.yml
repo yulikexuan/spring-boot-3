@@ -1,0 +1,10 @@
+sfg6:
+  profile:
+    username: yul
+    email: yu.li@tecsys.com
+  author:
+    name: yul
+    phone: 514-123-45678
+  file-system:
+    os: linux
+    minimum-free-disk-space: 100

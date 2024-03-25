@@ -1,0 +1,11 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+sfg6:
+  profile:
+    username: berry
+    email: berry@gmail.com
+  file-system:
+    os: windows
+    minimum-free-disk-space: 200

@@ -1,0 +1,63 @@
+# The Default
+spring:
+  profiles:
+    active: default
+sfg6:
+  server:
+    session-timeout: ${random.int[1800,3600]}
+    statistic-period: 3
+    max-file-size: 4
+  logger:
+    appender: file
+  db-source:
+    url: https://yul.postgres.us-west-2.rds.amazonaws.com
+---
+# For Profile 'dev' ############################################################
+spring:
+  config:
+    activate:
+      on-profile: dev
+sfg6:
+  server:
+    session-timeout: ${random.int[15,30]}
+    statistic-period: 0
+    max-file-size: 1
+---
+# For Profile 'dev-db'
+spring:
+  config:
+    activate:
+      on-profile: dev-db
+sfg6:
+  db-source:
+    url: http://localhost:54315
+---
+# For Profile 'dev-log'
+spring:
+  config:
+    activate:
+      on-profile: dev-log
+sfg6:
+  logger:
+    appender: console
+---
+# For Profile 'qa' #############################################################
+spring:
+  config:
+    activate:
+      on-profile: qa
+sfg6:
+  server:
+    session-timeout: ${random.int[600,5400]}
+    statistic-period: 1
+    max-file-size: 8
+---
+# For Profile 'qa-db'
+spring:
+  config:
+    activate:
+      on-profile: qa-db
+sfg6:
+  db-source:
+    url: https://qa.postgres.tecsysrd.com
+---

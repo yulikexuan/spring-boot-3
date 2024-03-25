@@ -1,0 +1,22 @@
+# server.port=7070
+#
+# spring.datasource.url=jdbc:postgresql://localhost:5432/dvdrental
+# spring.datasource.username=tecsys
+# spring.datasource.password=tecsys
+# spring.datasource.hikari.connection-timeout=1000
+# spring.sql.init.mode=always
+spring:
+  main:
+    # lazy-initialization: true
+    lazy-initialization: false
+  shell:
+    interactive:
+      enabled: true
+    history:
+      enabled: false
+      name: "spring-lab.log"
+  lab:
+    systemUserHomePropertyName: "user.home"
+    shell:
+      isAdmin: false
+debug: false

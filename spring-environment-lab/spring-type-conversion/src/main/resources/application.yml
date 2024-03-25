@@ -1,0 +1,9 @@
+spring:
+  pid:
+    file: ./sfg6.pid
+    fail-on-write-error: true
+sfg6:
+  profile:
+    id: 91d7d1d1-1ad2-4b98-8286-b41613c38927
+    username: yul
+    secret-level: 3

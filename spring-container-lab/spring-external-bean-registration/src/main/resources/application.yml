@@ -1,0 +1,7 @@
+# server.port=7070
+#
+# spring.datasource.url=jdbc:postgresql://localhost:5432/dvdrental
+# spring.datasource.username=tecsys
+# spring.datasource.password=tecsys
+# spring.datasource.hikari.connection-timeout=1000
+# spring.sql.init.mode=always

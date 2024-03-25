@@ -1,0 +1,7 @@
+spring:
+  pid:
+    file: ./application.pid
+    fail-on-write-error: true
+
+sfg6:
+  exit-code: ${random.int[1,8]}

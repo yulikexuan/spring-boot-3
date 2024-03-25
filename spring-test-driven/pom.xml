@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>spring.start.here</groupId>
+        <artifactId>spring-boot-3</artifactId>
+        <version>3.2.4</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>spring.start.here</groupId>
+    <artifactId>spring-test-driven</artifactId>
+    <packaging>pom</packaging>
+
+    <name>spring-test-driven</name>
+    <description>
+        The Lab of Test-Driven Development with Spring Boot 3
+    </description>
+
+    <build>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <argLine>-Xshare:off</argLine>
+                        <skipTests>false</skipTests>
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <configuration>
+                        <argLine>-Xshare:off</argLine>
+                        <!-- skipTests should always be set to false for Failsafe, otherwise skipping Unit Tests will also skip ITs -->
+                        <skipTests>false</skipTests>
+                        <includes>
+                            <include>**/*IT.java</include>
+                        </includes>
+                        <testFailureIgnore>true</testFailureIgnore>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>integration-test</id>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
+
+    </build>
+
+    <modules>
+        <module>spring-container-test</module>
+    </modules>
+
+</project>

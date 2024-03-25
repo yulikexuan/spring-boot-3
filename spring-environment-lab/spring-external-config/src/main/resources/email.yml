@@ -1,0 +1,5 @@
+sfg6:
+  contact:
+    email:
+      inbound: false
+      outbound: true

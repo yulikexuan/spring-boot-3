@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>spring.start.here</groupId>
+        <artifactId>spring-boot-3</artifactId>
+        <version>3.2.4</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>spring.start.here</groupId>
+    <artifactId>spring-container-lab</artifactId>
+    <packaging>pom</packaging>
+
+    <name>spring-container-lab</name>
+    <description>
+        The Lab of the Container of Spring Boot 3 and Spring Framework 6
+    </description>
+
+    <modules>
+        <module>spring-container</module>
+        <module>spring-shell</module>
+        <module>spring-external-bean-registration</module>
+        <module>spring-hierarchical-contexts</module>
+    </modules>
+
+</project>

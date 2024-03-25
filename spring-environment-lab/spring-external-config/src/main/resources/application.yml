@@ -1,0 +1,53 @@
+# spring.datasource.url=jdbc:postgresql://localhost:5432/dvdrental
+# spring.datasource.username=tecsys
+# spring.datasource.password=tecsys
+# spring.datasource.hikari.connection-timeout=1000
+# spring.sql.init.mode=always
+
+spring:
+  main:
+    # lazy-initialization: true
+    lazy-initialization: false
+  shell:
+    interactive:
+      enabled: true
+    history:
+      enabled: false
+      name: "spring-env.log"
+debug: false
+sfg6:
+  app:
+    java-version: @java.version@
+    source-encoding: @project.build.sourceEncoding@
+    output-encoding: @project.reporting.outputEncoding@
+    version: @project.version@
+  server:
+    port: 8001
+    max-http-request-header-size: 32767
+    home-page: https://twitter.com/${user.name}
+    session-timeout: ${random.int[1800,3600]}
+    statistic-period: 3
+    max-file-size: 4
+    ports-to-test: 80, 8000, 8080
+    repetition-unit: SECONDS
+    ips:
+      - 126.32.66.28
+      - 111.229.178.175
+      - 4.16.177.175
+    locations:
+      - country: CA
+        province: QC
+      - country: US
+        province: NY
+  author:
+    username: yul
+    email: yu.li@tecsys.com
+    priority: ${random.int(10)}
+    secret: ${random.uuid}
+    phones:
+      work:
+        area-code: "514"
+        number: "123-4567"
+      home:
+        area-code: "436"
+        number: "765-4321"
