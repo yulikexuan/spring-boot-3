@@ -13,11 +13,11 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-container-test</artifactId>
+    <artifactId>spring-testing-slice</artifactId>
     <packaging>jar</packaging>
 
-    <name>spring-container-test</name>
-    <description>Operating test within Spring Container</description>
+    <name>spring-testing-slice</name>
+    <description>Applying Spring Testing Slice - JSON</description>
 
     <dependencies>
 
@@ -25,6 +25,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
 
         <dependency>

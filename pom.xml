@@ -15,6 +15,7 @@
 
     <groupId>spring.start.here</groupId>
     <artifactId>spring-boot-3</artifactId>
+    <version>2024-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>spring-boot-3</name>
@@ -122,5 +123,11 @@
         </plugins>
 
     </build>
+
+    <modules>
+        <module>spring-container-lab</module>
+        <module>spring-environment-lab</module>
+        <module>spring-test-driven</module>
+    </modules>
 
 </project>

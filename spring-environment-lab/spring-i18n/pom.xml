@@ -9,7 +9,7 @@
     <parent>
         <groupId>spring.start.here</groupId>
         <artifactId>spring-environment-lab</artifactId>
-        <version>3.2.4</version>
+        <version>2024-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
