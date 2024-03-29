@@ -128,6 +128,7 @@
         <module>spring-container-lab</module>
         <module>spring-environment-lab</module>
         <module>spring-test-driven</module>
+        <module>spring-scheduling</module>
     </modules>
 
 </project>
