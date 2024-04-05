@@ -13,13 +13,20 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-test-driven</artifactId>
+    <artifactId>spring-aspect-lab</artifactId>
     <packaging>pom</packaging>
 
-    <name>spring-test-driven</name>
-    <description>
-        The Lab of Test-Driven Development with Spring Boot 3
-    </description>
+    <name>spring-aspect-lab</name>
+    <description>The Lab of Spring Framework Aspect AOP</description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+
+    </dependencies>
 
     <build>
 
@@ -69,8 +76,9 @@
     </build>
 
     <modules>
-        <module>spring-container-test</module>
-        <module>spring-testing-slice</module>
+
+        <module>spring-aop-basic</module>
+
     </modules>
 
 </project>

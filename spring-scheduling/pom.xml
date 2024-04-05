@@ -13,7 +13,6 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>spring.start.here</groupId>
     <artifactId>spring-scheduling</artifactId>
     <packaging>pom</packaging>
 
