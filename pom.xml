@@ -136,6 +136,7 @@
         <module>spring-scheduling</module>
         <module>spring-aspect-lab</module>
         <module>spring-utils</module>
+        <module>spring-proxy</module>
     </modules>
 
 </project>
