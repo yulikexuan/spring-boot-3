@@ -69,6 +69,7 @@
     <modules>
 
         <module>spring-proxy-pattern</module>
+        <module>spring-proxy-caching</module>
 
     </modules>
 

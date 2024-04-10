@@ -1,0 +1,50 @@
+# server:
+#   port: 8081
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+
+# Caffeine Cache Spec.:
+#   https://www.javadoc.io/doc/com.github.ben-manes.caffeine/caffeine/latest/com.github.benmanes.caffeine/com/github/benmanes/caffeine/cache/CaffeineSpec.html
+
+# initialCapacity=[integer]
+#   Specifies the initial capacity of the cache
+#   The cache will dynamically adjust based on your usage pattern
+#   but this can give it a helpful hint to start with
+
+# maximumSize=[long]
+#   Specifies the maximum number of entries the cache may contain
+
+# setting the maximumSize to 0 would disable caching altogether
+
+# maximumWeight=[long]
+#   Specifies the maximum total weight of entries the cache may contain
+#   You must also set a Weigher for the cache
+
+# expireAfterAccess=[duration]
+#   Specifies that each entry should be automatically removed from the cache
+#   once a fixed duration has elapsed after the entry's creation, or the most
+#   recent replacement of its value
+
+# expireAfterWrite=[duration]: Specifies that each entry should be automatically
+#   removed from the cache once a fixed duration has elapsed after the entry's
+#   creation, the most recent replacement of its value, or its last read
+
+# expireAfterAccess and expireAfterWrite can be used together if needed
+
+# For duration values, can use 's' for seconds, 'm' for minutes, 'h' for hours,
+#   and 'd' for days
+
+# weakKeys: Specifies that the cache will use weak references for keys
+
+# weakValues: Specifies that the cache will use weak references for values
+
+# softValues: Specifies that the cache will use soft references for values
+
+spring:
+  cache:
+    caffeine:
+      spec: maximumSize=10,expireAfterWrite=10s
