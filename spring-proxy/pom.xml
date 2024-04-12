@@ -70,6 +70,7 @@
 
         <module>spring-proxy-pattern</module>
         <module>spring-proxy-caching</module>
+        <module>spring-async-calling</module>
 
     </modules>
 

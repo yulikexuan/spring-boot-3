@@ -45,6 +45,12 @@
                 <version>${guava.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>spring.start.here</groupId>
+                <artifactId>sfg6-commons</artifactId>
+                <version>2024-SNAPSHOT</version>
+            </dependency>
+
         </dependencies>
 
     </dependencyManagement>

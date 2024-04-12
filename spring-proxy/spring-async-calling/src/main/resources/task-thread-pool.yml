@@ -1,0 +1,9 @@
+sfg6:
+  task:
+    thread-pool:
+      core-size: 5
+      max-size: 16
+      queue-capacity: 64
+      keep-alive: 1s
+      is-daemon-thread: true
+      thread-name-prefix: sfg6-async-exec-
