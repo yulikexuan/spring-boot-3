@@ -19,8 +19,8 @@
     <name>spring-solid</name>
     <description>The Lab of SOLID Object-Oriented Design in Spring</description>
 
-    <!-- <modules>
-        <module>spring-util</module>
-    </modules> -->
+    <modules>
+        <module>liskov-substitution</module>
+    </modules>
 
 </project>
