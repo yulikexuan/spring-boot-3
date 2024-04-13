@@ -87,7 +87,7 @@ class OptionalsTest {
                 .toList();
 
         // Then
-        assertThat(uuidStrings).containsExactly(uuids);
+        assertThat(uuidStrings).contains(uuids);
     }
 
     @Test

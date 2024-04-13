@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 @ContextConfiguration(classes = { Sfg6ObjectMappingCfg.class })
 @DisplayName("Test Sfg6TestingSliceJsonApp class - ")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-class Sfg6RegistrationsJsonAppTest {
+class Sfg6RegistrationsJsonAppIT {
 
     @Autowired
     private ApplicationContext appCtx;

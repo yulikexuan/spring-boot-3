@@ -19,59 +19,11 @@
     <name>spring-proxy</name>
     <description>The Lab of Spring Proxies</description>
 
-    <build>
-
-        <pluginManagement>
-
-            <plugins>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <argLine>-Xshare:off</argLine>
-                        <skipTests>false</skipTests>
-                        <includes>
-                            <include>**/*Test.java</include>
-                        </includes>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <configuration>
-                        <argLine>-Xshare:off</argLine>
-                        <!-- skipTests should always be set to false for Failsafe, otherwise skipping Unit Tests will also skip ITs -->
-                        <skipTests>false</skipTests>
-                        <includes>
-                            <include>**/*IT.java</include>
-                        </includes>
-                        <testFailureIgnore>true</testFailureIgnore>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>integration-test</id>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-            </plugins>
-
-        </pluginManagement>
-
-    </build>
-
     <modules>
-
         <module>spring-proxy-pattern</module>
         <module>spring-proxy-caching</module>
         <module>spring-async-calling</module>
-
+        <module>spring-proxy-bean-validation</module>
     </modules>
 
 </project>

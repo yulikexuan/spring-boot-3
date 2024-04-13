@@ -21,20 +21,6 @@
         The Lab of the Environment of Spring Boot 3 and Spring Framework 6
     </description>
 
-    <dependencyManagement>
-
-        <dependencies>
-
-            <dependency>
-                <groupId>spring.start.here</groupId>
-                <artifactId>sfg6-commons</artifactId>
-                <version>2024-SNAPSHOT</version>
-            </dependency>
-
-        </dependencies>
-
-    </dependencyManagement>
-
     <modules>
         <module>sfg6-commons</module>
         <module>spring-external-config</module>

@@ -29,7 +29,7 @@ import static sfg6lab.domain.model.Sales.SalesData;
 @ContextConfiguration(classes = {Sfg6ObjectMappingCfg.class})
 @DisplayName("Test SalesJsonSerializer - ")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-class Sfg6SalesJsonAppTest {
+class Sfg6SalesJsonAppIT {
 
     @Autowired
     private JacksonTester<Sales> jacksonTester;

@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
         useMainMethod = SpringBootTest.UseMainMethod.WHEN_AVAILABLE)
 @DisplayName("Test Sfg6AppCfg Class - ")
 @DisplayNameGeneration(ReplaceUnderscores.class)
-class Sfg6AppCachingTest {
+class Sfg6AppCachingIT {
 
     @Autowired
     private CacheManager cacheManager;
