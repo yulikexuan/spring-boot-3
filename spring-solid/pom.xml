@@ -21,6 +21,7 @@
 
     <modules>
         <module>liskov-substitution</module>
+        <module>liskov-substitution-payment</module>
     </modules>
 
 </project>
