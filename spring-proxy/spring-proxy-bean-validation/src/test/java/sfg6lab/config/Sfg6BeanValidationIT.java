@@ -3,15 +3,18 @@
 package sfg6lab.config;
 
 
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import sfg6lab.domain.model.GeometryProperties;
 import sfg6lab.domain.model.Photo;
 import sfg6lab.domain.service.FileDownloadingService;
 import sfg6lab.domain.service.PhotoService;
@@ -19,8 +22,7 @@ import sfg6lab.domain.service.PhotoService;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import static org.mockito.BDDMockito.given;
 
@@ -32,6 +34,20 @@ import static org.mockito.BDDMockito.given;
 @DisplayName("Test Spring Bean Validation - ")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class Sfg6BeanValidationIT {
+
+    @Nested
+    class ConfigurationPropertiesValidation {
+
+        @Autowired
+        private GeometryProperties geometryProperties;
+
+        @Test
+        void geometry_Properties_Is_Available() {
+            assertThat(this.geometryProperties.circle()).isNotNull();
+            assertThat(this.geometryProperties.rectangle()).isNotNull();
+        }
+
+    }
 
     @Nested
     class SpringValidationIT {
@@ -89,9 +105,24 @@ class Sfg6BeanValidationIT {
             Photo photo = new Photo(id, profile, name, isProfilePhoto, createdTime);
 
             // Then
+            String errMsg = "profile: must be greater than or equal to 1";
             assertThatThrownBy(() -> photoService.download(photo))
                     .isExactlyInstanceOf(ConstraintViolationException.class)
-                    .hasMessageEndingWith("profile: must be greater than or equal to 1");
+                    .hasMessageEndingWith(errMsg)
+                    .extracting(
+                            throwable -> ((ConstraintViolationException) throwable)
+                                    .getConstraintViolations(),
+                            as(InstanceOfAssertFactories.COLLECTION))
+                    .hasSize(1)
+                    .first(InstanceOfAssertFactories.type(ConstraintViolation.class))
+                    .satisfies(vio -> {
+                        assertThat(vio.getRootBeanClass()).isSameAs(PhotoService.class);
+                        assertThat(vio.getLeafBean()).isExactlyInstanceOf(Photo.class);
+                        assertThat(vio.getPropertyPath()).hasToString(
+                                "download.photo.profile");
+                        assertThat(vio.getInvalidValue()).isEqualTo(0L);
+                    });
+
         }
 
     }

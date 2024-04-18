@@ -1,0 +1,7 @@
+sfg6:
+  geometry:
+    circle:
+      radius: 820
+    rectangle:
+      width: 700
+      height: 400

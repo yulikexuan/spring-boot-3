@@ -5,6 +5,7 @@ package sfg6lab.config;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
@@ -28,7 +29,8 @@ import sfg6lab.domain.service.PhotoService;
         includeFilters = @ComponentScan.Filter({
                 Component.class, Controller.class, Service.class }),
         basePackages = { "sfg6lab.service", "sfg6lab.domain.service"})
-@ConfigurationPropertiesScan(basePackages = { "sfg6lab.config" })
+@ConfigurationPropertiesScan(
+        basePackages = { "sfg6lab.config", "sfg6lab.domain.model" })
 public class Sfg6AppCfg implements AsyncConfigurer {
 
     @Bean

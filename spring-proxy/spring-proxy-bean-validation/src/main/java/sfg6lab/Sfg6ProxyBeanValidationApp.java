@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import sfg6lab.domain.model.GeometryProperties;
 import sfg6lab.config.Sfg6AppCfg;
 
 import java.util.Scanner;
@@ -21,6 +22,8 @@ public class Sfg6ProxyBeanValidationApp {
                 .logStartupInfo(false)
                 .build(args)
                 .run(args);
+
+        var geometryProperties = (GeometryProperties) ctx.getBean("geometryProperties");
 
         System.out.println(">>> Press Enter Key to Continue ... ");
         new Scanner(System.in).nextLine();
