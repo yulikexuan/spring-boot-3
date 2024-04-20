@@ -24,6 +24,7 @@
         <module>spring-proxy-caching</module>
         <module>spring-async-calling</module>
         <module>spring-proxy-bean-validation</module>
+        <module>spring-proxy-retry</module>
     </modules>
 
 </project>
