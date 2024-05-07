@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:54315/yulikexuan?currentSchema=date4u
+    username: postgres
+    password: tecsys
+  datasource-itopia:
+    url: jdbc:postgresql://localhost:54315/tecsys_dev_all?currentSchema=tecsys_dev_all_m
+    username: postgres
+    password: tecsys
