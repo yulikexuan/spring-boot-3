@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 
-@DisplayName("Test the Thread Safety of InventoryServices - ")
+@DisplayName("Test the Thread-Safety of InventoryServices - ")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class InventoryServiceTest {
 
@@ -52,7 +52,7 @@ class InventoryServiceTest {
         await().pollDelay(Duration.ofMillis(200)).until(() -> true);
     }
 
-    @RepeatedTest(4)
+    @RepeatedTest(7)
     void inventory_Services_Should_Be_Thread_Safe() {
 
         // Given

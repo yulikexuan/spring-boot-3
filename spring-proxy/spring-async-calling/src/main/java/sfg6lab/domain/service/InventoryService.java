@@ -30,7 +30,7 @@ final class InventoryIncrementingService implements InventoryService {
     @Override
     public void changeInventory() {
         for (int i = 0; i < AMOUNT_OF_CHANGES; i++) {
-            this.inventory.increment();
+            this.inventory.increase();
         }
     }
 }
@@ -44,7 +44,7 @@ final class InventoryDecrementingService implements InventoryService {
     @Override
     public void changeInventory() {
         for (int i = 0; i < AMOUNT_OF_CHANGES; i++) {
-            this.inventory.decrement();
+            this.inventory.decrease();
         }
     }
 }

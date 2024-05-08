@@ -6,9 +6,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public interface Inventory {
 
-    void increment();
+    void increase();
 
-    void decrement();
+    void decrease();
 
     int items();
 
@@ -27,12 +27,12 @@ class SimpleInventory implements Inventory {
     private int items = 0;
 
     @Override
-    public void increment() {
+    public void increase() {
         items++;
     }
 
     @Override
-    public void decrement() {
+    public void decrease() {
         items--;
     }
 
@@ -51,7 +51,7 @@ class SafeInventory implements Inventory {
     private final ReentrantLock lock = new ReentrantLock();
 
     @Override
-    public void increment() {
+    public void increase() {
 
         try {
             this.lock.lockInterruptibly();
@@ -64,7 +64,7 @@ class SafeInventory implements Inventory {
     }
 
     @Override
-    public void decrement() {
+    public void decrease() {
         try {
             this.lock.lockInterruptibly();
             items--;
