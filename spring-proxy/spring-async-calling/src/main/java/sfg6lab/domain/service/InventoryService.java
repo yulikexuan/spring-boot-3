@@ -35,6 +35,7 @@ final class InventoryIncrementingService implements InventoryService {
     }
 }
 
+
 @RequiredArgsConstructor(staticName = "of", access = AccessLevel.PACKAGE)
 final class InventoryDecrementingService implements InventoryService {
 
