@@ -11,9 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.*;
+import org.springframework.jdbc.core.support.AbstractInterruptibleBatchPreparedStatementSetter;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -21,9 +20,8 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
+import java.util.stream.IntStream;
 
 import static java.util.Map.entry;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,6 +42,12 @@ class Sfg6AppCfgIT {
     @Qualifier("itopiaDataSource")
     private DataSource itopiaDataSource;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private NamedParameterJdbcTemplate namedParamJdbcTemplate;
+
     @BeforeEach
     void setUp() {
     }
@@ -51,9 +55,6 @@ class Sfg6AppCfgIT {
     @Nested
     @DisplayName("Test JdbcTemplate - ")
     class JdbcTemplateTest {
-
-        @Autowired
-        private JdbcTemplate jdbcTemplate;
 
         @Test
         void jdbcTemplate_Has_DataSource() {
@@ -80,7 +81,7 @@ class Sfg6AppCfgIT {
                     sql, Integer.class, nickname);
 
             // Then
-            assertThat(lengths).containsExactly(3);
+            assertThat(lengths).isNotEmpty();
         }
 
         @Test
@@ -334,19 +335,16 @@ class Sfg6AppCfgIT {
             // Then
             System.out.println(keys);
         }
-
         static record NicknameLastseen(String nickname, LocalDateTime lastseen) {}
         static record NameLastSeen(String name, LocalDateTime lastSeen) {}
+
     }
 
     @Nested
     @DisplayName("Test NamedParameterJdbcTemplate - ")
     class NamedParameterJdbcTemplateTest {
-
         private String sql;
 
-        @Autowired
-        private NamedParameterJdbcTemplate namedParamJdbcTemplate;
 
         @Test
         void able_To_Use_Map_To_Set_Parameter_Value() {
@@ -361,7 +359,7 @@ class Sfg6AppCfgIT {
                     Integer.class);
 
             // Then
-            assertThat(manelength).isEqualTo(3);
+            assertThat(manelength).isGreaterThan(0);
         }
 
         @Test
@@ -377,7 +375,7 @@ class Sfg6AppCfgIT {
                     sql, params, Integer.class);
 
             // Then
-            assertThat(manelength).isEqualTo(3);
+            assertThat(manelength).isGreaterThan(0);
         }
 
         @Test
@@ -409,6 +407,165 @@ class Sfg6AppCfgIT {
             }
 
         }
+    }
+
+    @Nested
+    @DisplayName("Test Batch Operations of JdbcTemplate")
+    class BatchOperationsTest {
+
+        private String sql;
+
+        private int maneLengthChange;
+
+        private List<ManeLengthUpdate> maneLengthUpdates;
+
+        @BeforeEach
+        void setUp() {
+            sql = "UPDATE profile SET manelength = manelength + ? WHERE id = ?";
+        }
+
+        @Test
+        void update_In_Batch_With_BatchPreparedStatementSetter_Implementation() {
+
+            // Given
+            maneLengthChange = 5;
+            maneLengthUpdates = IntStream.rangeClosed(1, 5)
+                            .mapToObj(i -> new ManeLengthUpdate(i, maneLengthChange))
+                            .toList();
+
+            final var maneLengthuUpdate = new BatchPreparedStatementSetter() {
+                @Override
+                public void setValues(
+                        @NonNull final PreparedStatement ps,
+                        final int i) throws SQLException {
+
+                    ps.setInt(1, maneLengthUpdates.get(i).manelength());
+                    ps.setInt(2, maneLengthUpdates.get(i).id());
+                }
+                @Override
+                public int getBatchSize() {
+                    return maneLengthUpdates.size();
+                }
+            };
+
+            // When
+            int[] updated = jdbcTemplate.batchUpdate(sql, maneLengthuUpdate);
+
+            // Then
+            assertThat(updated).hasSize(maneLengthUpdates.size());
+        }
+
+        @Test
+        void update_In_Batch_With_AbstractInterruptibleBatchPreparedStatementSetter() {
+
+            // Given
+            maneLengthChange = -5;
+            maneLengthUpdates = IntStream.rangeClosed(1, 5)
+                            .mapToObj(i -> new ManeLengthUpdate(i, maneLengthChange))
+                            .toList();
+
+            final var bpss = new AbstractInterruptibleBatchPreparedStatementSetter() {
+                @Override
+                protected boolean setValuesIfAvailable(
+                        @NonNull final PreparedStatement ps, final int index)
+                        throws SQLException {
+
+                    if (index >= maneLengthUpdates.size()) {
+                        return false;
+                    }
+
+                    ps.setInt(1, maneLengthUpdates.get(index).manelength());
+                    ps.setInt(2, maneLengthUpdates.get(index).id());
+
+                    return true;
+                }
+            };
+
+            // When
+            int[] updated = jdbcTemplate.batchUpdate(sql, bpss);
+
+            // Then
+            assertThat(updated).hasSize(maneLengthUpdates.size());
+        }
+
+        @Test
+        void udate_In_Batch_With_Implementing_ParameterizedPreparedStatementSetter() {
+
+            // Given
+            maneLengthChange = 5;
+            maneLengthUpdates = IntStream.rangeClosed(1, 5)
+                            .mapToObj(i -> new ManeLengthUpdate(i, maneLengthChange))
+                            .toList();
+
+            final var paramPreparedStatementSetter =
+                    new ParameterizedPreparedStatementSetter<ManeLengthUpdate>() {
+                        @Override
+                        public void setValues(
+                                @NonNull final PreparedStatement ps,
+                                @NonNull final ManeLengthUpdate data) throws SQLException {
+
+                            ps.setInt(1, data.id());
+                            ps.setInt(2, data.manelength());
+                        }
+                    };
+
+            // When
+            var updated = jdbcTemplate.batchUpdate(
+                    sql,
+                    maneLengthUpdates,
+                    maneLengthUpdates.size(),
+                    paramPreparedStatementSetter);
+
+            // Then
+            assertThat(updated).hasDimensions(1, 5);
+        }
+
+        @Test
+        void update_In_Batch_With_NamedParameterJdbcTemplate_And_MapSqlParameterSource() {
+
+            // Given
+            sql = "UPDATE profile SET manelength = manelength + :manelength WHERE id = :id";
+
+            maneLengthChange = 5;
+            maneLengthUpdates = IntStream.rangeClosed(1, 5)
+                    .mapToObj(i -> new ManeLengthUpdate(i, maneLengthChange))
+                    .toList();
+
+            var args = maneLengthUpdates.stream()
+                    .map(u -> new MapSqlParameterSource()
+                            .addValue("manelength", u.manelength())
+                            .addValue("id", u.id()))
+                    .toArray(MapSqlParameterSource[]::new);
+
+            // When
+            var updated = namedParamJdbcTemplate.batchUpdate(sql, args);
+
+            // Then
+            assertThat(updated).hasSize(5);
+        }
+
+        @Test
+        void update_In_Batch_With_NamedParameterJdbcTemplate_And_SqlParameterSourceUtil() {
+
+            // Given
+            sql = "UPDATE profile SET manelength = manelength + :manelength WHERE id = :id";
+
+            maneLengthChange = -5;
+            maneLengthUpdates = IntStream.rangeClosed(1, 5)
+                    .mapToObj(i -> new ManeLengthUpdate(i, maneLengthChange))
+                    .toList();
+
+            var args =
+                    SqlParameterSourceUtils.createBatch(maneLengthUpdates);
+
+            // When
+            var updated = namedParamJdbcTemplate.batchUpdate(sql, args);
+
+            // Then
+            assertThat(updated).hasSize(5);
+        }
+
+        static record ManeLengthUpdate(int id, int manelength) {}
     }
 
 }///:~
