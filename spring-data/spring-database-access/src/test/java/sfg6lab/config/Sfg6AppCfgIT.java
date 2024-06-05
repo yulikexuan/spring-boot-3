@@ -3,22 +3,22 @@
 package sfg6lab.config;
 
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.DataClassRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import javax.sql.DataSource;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -335,10 +335,80 @@ class Sfg6AppCfgIT {
             System.out.println(keys);
         }
 
+        static record NicknameLastseen(String nickname, LocalDateTime lastseen) {}
+        static record NameLastSeen(String name, LocalDateTime lastSeen) {}
     }
 
-    static record NicknameLastseen(String nickname, LocalDateTime lastseen) {}
+    @Nested
+    @DisplayName("Test NamedParameterJdbcTemplate - ")
+    class NamedParameterJdbcTemplateTest {
 
-    static record NameLastSeen(String name, LocalDateTime lastSeen) {}
+        private String sql;
+
+        @Autowired
+        private NamedParameterJdbcTemplate namedParamJdbcTemplate;
+
+        @Test
+        void able_To_Use_Map_To_Set_Parameter_Value() {
+
+            // Given
+            sql = "SELECT manelength FROM Profile WHERE nickname = :name";
+
+            // When
+            Integer manelength = namedParamJdbcTemplate.queryForObject(
+                    sql,
+                    Map.ofEntries(entry("name", "FillmoreFat")),
+                    Integer.class);
+
+            // Then
+            assertThat(manelength).isEqualTo(3);
+        }
+
+        @Test
+        void able_To_Use_Bean_To_Set_Parameter_Value() {
+
+            // Given
+            sql = "SELECT manelength FROM Profile WHERE nickname = :name";
+            SqlParameterSource params = new BeanPropertySqlParameterSource(
+                    new NicknameParameterSource());
+
+            // When
+            Integer manelength = namedParamJdbcTemplate.queryForObject(
+                    sql, params, Integer.class);
+
+            // Then
+            assertThat(manelength).isEqualTo(3);
+        }
+
+        @Test
+        void should_Be_Able_To_Access_Connection_With_Callback() {
+
+            // Given
+
+            // When
+            var dbProductName = namedParamJdbcTemplate.getJdbcTemplate()
+                    .execute(new ConnectionPropertys());
+
+            // Then
+            assertThat(dbProductName).isEqualTo("PostgreSQL");
+        }
+
+        static class NicknameParameterSource {
+            public String getName() {
+                return "FillmoreFat";
+            }
+        }
+
+        static class ConnectionPropertys implements ConnectionCallback<Object> {
+
+            @Override
+            public Object doInConnection(@NonNull final Connection connection)
+                    throws SQLException, DataAccessException {
+
+                return connection.getMetaData().getDatabaseProductName();
+            }
+
+        }
+    }
 
 }///:~
