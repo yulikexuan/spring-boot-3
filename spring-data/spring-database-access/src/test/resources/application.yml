@@ -7,3 +7,8 @@ spring:
     url: jdbc:postgresql://localhost:54315/tecsys_dev_all?currentSchema=tecsys_dev_all_m
     username: postgres
     password: tecsys
+
+# https://dev.to/therealdumbprogrammer/making-spring-transactions-transparent-with-detailed-logging-1n69
+logging:
+  level:
+    org.springframework.orm.jpa.JpaTransactionManager: debug
