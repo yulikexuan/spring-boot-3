@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:54315/yulikexuan?currentSchema=spring_data_jdbc
+    username: postgres
+    password: tecsys
+  sql:
+    init:
+      mode: always

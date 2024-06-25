@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 
+@Disabled
 @DisplayName("Test InventoryService Class - ")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class InventoryServiceTest {

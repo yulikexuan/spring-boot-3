@@ -1,0 +1,11 @@
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('yulikexuan', '2024-06-15 22:57:55');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('john', '2020-04-13 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('mike', '2020-01-18 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('james', '2020-03-11 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('katie', '2021-01-05 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('beth', '2020-08-03 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('julius', '2021-02-09 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('darren', '2020-12-11 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('marion', '2020-09-23 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('stephanie', '2020-01-18 00:00:00');
+INSERT INTO spring_data_jdbc.users (username, created) VALUES ('burk', '2020-11-28 00:00:00');

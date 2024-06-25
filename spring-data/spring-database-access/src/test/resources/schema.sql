@@ -1,4 +1,3 @@
-\connect yulikexuan;
 DROP SCHEMA IF EXISTS date4u CASCADE;
 CREATE SCHEMA IF NOT EXISTS date4u;
 SET search_path TO date4u,public;
