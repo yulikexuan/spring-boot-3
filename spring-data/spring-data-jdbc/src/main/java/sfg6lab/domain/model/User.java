@@ -4,6 +4,7 @@ package sfg6lab.domain.model;
 
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -24,9 +25,18 @@ public class User {
     private Long id;
 
     @Column("username")
-    private String usrename;
+    private String username;
 
     @Column("created")
     private LocalDateTime created;
+
+    @Column("email")
+    private String email;
+
+    @Column("level")
+    private int level;
+
+    @Column("active")
+    private boolean active;
 
 } ///:~

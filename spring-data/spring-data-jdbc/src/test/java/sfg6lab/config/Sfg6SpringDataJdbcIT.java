@@ -11,12 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
-import sfg6lab.domain.model.User;
 import sfg6lab.repository.UserRepository;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 @Slf4j
@@ -26,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJdbcTest
 @Import(Sfg6AppCfg.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-abstract class Sfg6AppCfgSpringDataJdbcIT {
+abstract class Sfg6SpringDataJdbcIT {
 
     @Autowired
     UserRepository userRepository;
@@ -40,17 +35,5 @@ abstract class Sfg6AppCfgSpringDataJdbcIT {
     void afterAll() {
         userRepository.deleteAll();
     }
-
-//    @Test
-//    void has_Repository_For_User_To_Know_All_Users() {
-//
-//        // Given
-//
-//        // When
-//        List<User> users = userRepository.findAll();
-//
-//        // Then
-//        assertThat(users).hasSize(11);
-//    }
 
 }

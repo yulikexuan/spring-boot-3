@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.5</version>
+        <version>3.3.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -22,12 +22,13 @@
     <description>The Lab of Spring Boot 3 and Spring Framework 6</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <p6spy.version>1.9.1</p6spy.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-shell.version>3.2.2</spring-shell.version>
         <guava.version>33.0.0-jre</guava.version>
+        <byte-buddy.version>1.14.17</byte-buddy.version>
     </properties>
 
     <dependencyManagement>
@@ -182,6 +183,7 @@
     </build>
 
     <modules>
+        <module>spring-java-21</module>
         <module>spring-solid</module>
         <module>spring-container-lab</module>
         <module>spring-environment-lab</module>
@@ -191,7 +193,7 @@
         <module>spring-utils</module>
         <module>spring-proxy</module>
         <module>spring-data</module>
-<!--        <module>spring-web</module>-->
+        <module>spring-web</module>
     </modules>
 
 </project>

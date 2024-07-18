@@ -13,18 +13,25 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-proxy</artifactId>
+    <artifactId>spring-java-21</artifactId>
     <packaging>pom</packaging>
 
-    <name>spring-proxy</name>
-    <description>The Lab of Spring Proxies</description>
+    <name>spring-java-21</name>
+    <description>The Lab of Java 21 New Features</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+    </dependencies>
 
     <modules>
-        <module>spring-proxy-pattern</module>
-        <module>spring-proxy-caching</module>
-        <module>spring-async-calling</module>
-        <module>spring-proxy-bean-validation</module>
-        <module>spring-proxy-retry</module>
+        <module>jep430-string-templates</module>
+        <module>jep450-record-pattern</module>
+        <module>jep441-pattern-matching-switch</module>
+        <module>jep431-sequenced-collections</module>
+        <module>jep444-virtual-threads</module>
     </modules>
 
 </project>
