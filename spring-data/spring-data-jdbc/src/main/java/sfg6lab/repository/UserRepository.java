@@ -70,18 +70,28 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Streamable<User> findByLevel(int level);
 
-    @Query("SELECT COUNT(*) FROM USERS WHERE ACTIVE = :ACTIVE")
-    int findNumberOfUsersByActivity(@Param("ACTIVE") boolean active);
+    @Query("SELECT COUNT(*) FROM users WHERE level = :level")
+    int findNumberOfUsersByLevel(@Param("level") int level);
+
+    @Query("SELECT COUNT(*) FROM users WHERE active = :active")
+    int findNumberOfUsersByActivity(@Param("active") boolean active);
 
     @Query("SELECT * FROM USERS WHERE LEVEL = :LEVEL AND ACTIVE = :ACTIVE")
-    List<User> findByLevelAndActive(@Param("LEVEL") int level, @Param("ACTIVE") boolean active);
+    Streamable<User> findByLevelAndActive(
+            @Param("LEVEL") int level,
+            @Param("ACTIVE") boolean active);
+
+    @Query("SELECT level FROM users WHERE username = :username")
+    int findLevelByUsername(@Param("username") String username);
 
     @Modifying
-    @Query("UPDATE USERS SET LEVEL = :NEW_LEVEL WHERE LEVEL = :OLD_LEVEL")
-    int updateLevel(@Param("OLD_LEVEL") int oldLevel, @Param("NEW_LEVEL")int newLevel);
+    @Query("UPDATE USERS SET level = :newLevel WHERE username = :username")
+    int updateLevelByUsername(
+            @Param("newLevel") int newLevel,
+            @Param("username") String username);
 
     @Modifying
-    @Query("DELETE FROM USERS WHERE LEVEL = :LEVEL")
-    int deleteByLevel(@Param("LEVEL") int level);
+    @Query("DELETE FROM USERS WHERE username = :username")
+    int deleteByUsername(@Param("username") String username);
 
 }
