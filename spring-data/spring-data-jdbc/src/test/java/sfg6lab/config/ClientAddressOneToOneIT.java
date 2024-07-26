@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import sfg6lab.domain.model.Address;
 import sfg6lab.domain.model.Client;
-import sfg6lab.repository.AddressRepository;
 import sfg6lab.repository.ClientRepository;
 
 import java.time.LocalDateTime;
@@ -21,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 @Slf4j
@@ -30,9 +30,6 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
 
     @Autowired
     private ClientRepository clientRepository;
-
-    @Autowired
-    private AddressRepository addressRepository;
 
     @BeforeEach
     void setUp() {
@@ -47,7 +44,6 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
     @Test
     void have_Same_Number_Of_Records() {
         assertThat(clientRepository.count())
-                .isEqualTo(addressRepository.count())
                 .isEqualTo(EXPECTED_NUMBER_OF_RECORDS);
     }
 
@@ -68,17 +64,16 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
 
         // Given
         var client = clientOpt.get();
-        long clientId = client.id();
 
         // When
-        Optional<Address> addressOpt = addressRepository.findById(clientId);
+        Address address = client.address();
 
         // Then
-        assertThat(addressOpt).isPresent();
-        Address address = addressOpt.get();
-
-        assertThat(address).extracting("street", "city")
-                .containsExactly(street, city);
+        assertAll(
+                () -> assertThat(address)
+                        .extracting("street", "city")
+                        .containsExactly(street, city),
+                () -> assertThat(client.email()).isEqualTo(email));
     }
 
     private List<Client> initializeDb() {

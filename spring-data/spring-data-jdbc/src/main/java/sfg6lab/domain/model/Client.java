@@ -6,12 +6,15 @@ package sfg6lab.domain.model;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
 
+/*
+ * By convention, Spring Data applies a NamingStrategy to determine
+ *     table, column, and schema names defaulting to snake case
+ */
 @Table("clients")
 public record Client(
         @Id @Column("id") Long id,
@@ -20,7 +23,7 @@ public record Client(
         @Column("level") int level,
         @Column("active") boolean active,
         @Column("created") @NonNull LocalDateTime created,
-        @MappedCollection(idColumn = "client_id") Address address) {
+        Address address) {
 
     public static Client of(
             @NonNull String name,
@@ -33,7 +36,7 @@ public record Client(
 
         return new Client(
                 null, name, email, level, active, created,
-                new Address(null, street, city));
+                new Address(street, city));
     }
 
 } ///:~
