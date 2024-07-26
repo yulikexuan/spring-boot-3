@@ -86,7 +86,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Modifying
     @Query("UPDATE USERS SET level = :newLevel WHERE username = :username")
-    int updateLevelByUsername(
+        int updateLevelByUsername(
             @Param("newLevel") int newLevel,
             @Param("username") String username);
 
