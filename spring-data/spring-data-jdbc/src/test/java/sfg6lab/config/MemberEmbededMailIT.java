@@ -1,4 +1,4 @@
-//: sfg6lab.config.ClientAddressOneToOneIT.java
+//: sfg6lab.config.MemberEmbededMailIT.java
 
 package sfg6lab.config;
 
@@ -8,9 +8,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import sfg6lab.domain.model.Address;
-import sfg6lab.domain.model.Client;
-import sfg6lab.repository.ClientRepository;
+import sfg6lab.domain.model.Mail;
+import sfg6lab.domain.model.Member;
+import sfg6lab.repository.MemberEmbededMailRepository;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -18,74 +18,89 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 @Slf4j
-class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
+class MemberEmbededMailIT extends Sfg6SpringDataJdbcIT {
 
     private static final int EXPECTED_NUMBER_OF_RECORDS = 10;
+    private static final String DEFAULT_TEAM = "itopia-app";
 
     @Autowired
-    private ClientRepository clientRepository;
+    private MemberEmbededMailRepository repository;
 
     @BeforeAll
     void beforeAll() {
-        clientRepository.saveAll(initializeDb());
+        repository.saveAll(initializeDb());
     }
 
     @AfterAll
     void afterAll() {
-        clientRepository.deleteAll();
+        repository.deleteAll();
     }
 
     @Test
-    void have_Same_Number_Of_Records() {
-        assertThat(clientRepository.count())
-                .isEqualTo(EXPECTED_NUMBER_OF_RECORDS);
+    void able_To_Create_Multi_Members_At_Once() {
+        assertThat(repository.count()).isEqualTo(EXPECTED_NUMBER_OF_RECORDS);
     }
 
     @ParameterizedTest
     @CsvSource({
-            "'john@somedomain.com', '1 5th Avenue', 'New York'",
-            "'james@somedomain.com', '3 5th Avenue', 'New York'",
-            "'burk@somedomain.com', '10 5th Avenue', 'New York'"})
-    void one_Client_Has_Only_One_Address_At_Least(String email, String street, String city) {
+            "'mike@somedomain.com', '2 5th Avenue', 'New York'",
+            "'katie@somedomain.com', '4 5th Avenue', 'New York'",
+            "'stephanie@somedomain.com', '9 5th Avenue', 'New York'"})
+    void one_Member_Has_Only_One_Mail_Address(String email, String street, String city) {
 
         // Given
 
         // When
-        Optional<Client> clientOpt = clientRepository.findByEmail(email);
+        Optional<Member> memberOpt = repository.findByEmail(email);
 
         // Then
-        assertThat(clientOpt).isPresent();
-
-        // Given
-        var client = clientOpt.get();
+        assertThat(memberOpt).isPresent();
 
         // When
-        Address address = client.address();
+        Mail mailAddress = memberOpt.get().mail();
+        Member member = memberOpt.get();
+        LocalDateTime createdAt = member.created();
 
         // Then
-        assertAll(
-                () -> assertThat(address)
-                        .extracting("street", "city")
-                        .containsExactly(street, city),
-                () -> assertThat(client.email()).isEqualTo(email));
+        assertThat(mailAddress).extracting("street", "city")
+                .containsExactly(street, city);
+
+        // When
+        String team = member.team();
+
+        // Then
+        assertThat(team).isEqualTo(DEFAULT_TEAM);
+
+        // Given
+        LocalDateTime newCreatedTime = LocalDateTime.of(
+                2024, Month.JULY, 28, 0, 0);
+        Member newMember = Member.of(member, newCreatedTime);
+
+        // When
+        repository.save(newMember);
+
+        // Then
+        assertThat(repository.findByEmail(email).get())
+                .extracting("created")
+                .as(">>> The created filed is insert only, not able to be modified.")
+                .isEqualTo(createdAt);
     }
 
-    private List<Client> initializeDb() {
+    private List<Member> initializeDb() {
 
         return List.of(
-                Client.of(
+                Member.of(null, // team cannot be persisted
                         "john",
                         "john@somedomain.com",
                         1,
                         true,
+                        // created time can be persisted but not updated
                         LocalDateTime.of(2020, Month.APRIL, 13, 0, 0),
-                        "1 5th Avenue",
-                        "New York"),
-                Client.of(
+                        "1 5th Avenue","New York"),
+                Member.of(null, // team,
                         "mike",
                         "mike@somedomain.com",
                         3,
@@ -93,7 +108,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2020, Month.JANUARY, 18, 0, 0),
                         "2 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "james",
                         "james@somedomain.com",
                         3,
@@ -101,7 +116,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2020, Month.MARCH, 11, 0, 0),
                         "3 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "katie",
                         "katie@somedomain.com",
                         5,
@@ -109,7 +124,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2021, Month.JANUARY, 5, 0, 0),
                         "4 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "beth",
                         "beth@somedomain.com",
                         2,
@@ -117,7 +132,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2020, Month.AUGUST, 3, 0, 0),
                         "5 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "julius",
                         "julius@somedomain.com",
                         4,
@@ -125,7 +140,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2021, Month.FEBRUARY, 9, 0, 0),
                         "6 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "darren",
                         "darren@somedomain.com",
                         2,
@@ -133,7 +148,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2020, Month.DECEMBER, 11, 0, 0),
                         "7 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "marion",
                         "marion@somedomain.com",
                         2,
@@ -141,7 +156,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2020, Month.SEPTEMBER, 23, 0, 0),
                         "8 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "stephanie",
                         "stephanie@somedomain.com",
                         4,
@@ -149,7 +164,7 @@ class ClientAddressOneToOneIT extends Sfg6SpringDataJdbcIT {
                         LocalDateTime.of(2020, Month.JANUARY, 18, 0, 0),
                         "9 5th Avenue",
                         "New York"),
-                Client.of(
+                Member.of(null, // team,
                         "burk",
                         "burk@somedomain.com",
                         1,

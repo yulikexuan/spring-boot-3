@@ -12,3 +12,6 @@ DROP TABLE IF EXISTS spring_data_jdbc.addresses CASCADE;
 -- All references in an aggregate result in a foreign key relationship in the opposite direction in the database.
 -- By default, the name of the foreign key column is the table name of the referencing entity.
 CREATE TABLE spring_data_jdbc.addresses (clients INTEGER, street VARCHAR(30) NOT NULL, city VARCHAR(20) NOT NULL);
+
+DROP TABLE IF EXISTS spring_data_jdbc.members CASCADE;
+CREATE TABLE spring_data_jdbc.members (id serial PRIMARY KEY, team VARCHAR(16) DEFAULT 'itopia-app', active boolean, name VARCHAR(32) UNIQUE NOT NULL, email VARCHAR(32) NOT NULL, level INTEGER, created TIMESTAMP NOT NULL, street VARCHAR(30) NOT NULL, city VARCHAR(20) NOT NULL);
