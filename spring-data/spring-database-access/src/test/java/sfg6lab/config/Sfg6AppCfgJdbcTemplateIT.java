@@ -49,10 +49,6 @@ class Sfg6AppCfgJdbcTemplateIT {
     @Autowired
     private NamedParameterJdbcTemplate namedParamJdbcTemplate;
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Nested
     @DisplayName("Test JdbcTemplate - ")
     class JdbcTemplateTest {
@@ -96,7 +92,7 @@ class Sfg6AppCfgJdbcTemplateIT {
             var counts = itopiaJdbcTemplate.queryForList(sql, Integer.class);
 
             // Then
-            assertThat(counts.get(0)).isGreaterThan(500);
+            assertThat(counts.getFirst()).isGreaterThan(500);
         }
 
         @Test
@@ -274,7 +270,7 @@ class Sfg6AppCfgJdbcTemplateIT {
             // Given
             var date = LocalDate.parse("2021-09-01");
             var sql = """
-                SELECT nickname 
+                SELECT nickname
                 FROM profile
                 ORDER BY nickname LIMIT ?;
                 """;
@@ -336,8 +332,8 @@ class Sfg6AppCfgJdbcTemplateIT {
             // Then
             System.out.println(keys);
         }
-        static record NicknameLastseen(String nickname, LocalDateTime lastseen) {}
-        static record NameLastSeen(String name, LocalDateTime lastSeen) {}
+        record NicknameLastseen(String nickname, LocalDateTime lastseen) {}
+        record NameLastSeen(String name, LocalDateTime lastSeen) {}
 
     }
 
@@ -566,7 +562,7 @@ class Sfg6AppCfgJdbcTemplateIT {
             assertThat(updated).hasSize(5);
         }
 
-        static record ManeLengthUpdate(int id, int manelength) {}
+        record ManeLengthUpdate(int id, int manelength) {}
     }
 
     @Nested

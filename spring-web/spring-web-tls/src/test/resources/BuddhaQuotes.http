@@ -1,0 +1,3 @@
+### GET buddha's quote by valide index
+
+GET {{host}}/buddha-quotes?index=-10

@@ -47,7 +47,7 @@ class Sfg6AppCfgTransactionTemplateTest {
 
         // Given
         sql = """
-              UPDATE profile SET manelength = manelength + :manelength 
+              UPDATE profile SET manelength = manelength + :manelength
               WHERE nickname = :name
               """;
 
@@ -91,7 +91,7 @@ class Sfg6AppCfgTransactionTemplateTest {
 
         // Then
         assertThat(hashCode_0).isNotEqualTo(hashCode_1);
-        assertThat(hashCode_1).isNotEqualTo(connHashCodes.get(0));
+        assertThat(hashCode_1).isNotEqualTo(connHashCodes.getFirst());
         assertThat(Set.copyOf(connHashCodes)).hasSize(1);
     }
 

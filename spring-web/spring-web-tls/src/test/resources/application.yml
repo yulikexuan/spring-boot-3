@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:54315/yulikexuan?currentSchema=spring_data_jdbc
+    username: postgres
+    password: tecsys
+  sql:
+    init:
+      mode: always
+logging:
+  level:
+    org.springframework.data.jdbc: info
+    org.springframework.jdbc: info
+    sql: info
+server:
+  error:
+    include-binding-errors: always
+    # parameter trace=true
+    include-stacktrace: on_param
+    include-message: always
+    include-exception: true

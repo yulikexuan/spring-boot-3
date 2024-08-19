@@ -1,0 +1,17 @@
+### GET YearMonthRange info with RequestParam annotation
+
+< {%
+    client.global.set("start", "2001-12");
+    client.global.set("end", "2024-12");
+  %}
+
+GET {{host}}/yearmonthrange?yearMonthRange={{start}}~{{end}}
+
+> {%
+      client.test("Test customized YeanMonthRange formatter", function () {
+          client.assert(response.body.start === client.global.get("start"),
+              "Start YearMonth should be 2001-12");
+          client.assert(response.body.end === client.global.get("end"),
+              "End YearMonth should be 2024-12");
+      })
+  %}

@@ -1,0 +1,18 @@
+### Test URI template pattern with regular expressions
+
+< {%
+    client.global.set("name", "hello-world_123");
+    client.global.set("suffix", "png");
+  %}
+
+GET {{host}}/files/{{name}}.{{suffix}}
+
+> {%
+    client.log(response.body.name);
+    client.log(response.body.extension);
+
+    client.test("Test URI template pattern with regular expressions", function () {
+        client.assert(response.body.name === client.global.get("name"));
+        client.assert(response.body.extension === client.global.get("suffix"));
+    });
+  %}

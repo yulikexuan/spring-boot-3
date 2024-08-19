@@ -1,0 +1,17 @@
+### Get details of datetime range
+
+@start = 2022-11-01%2000:00:00
+@end = 2024-08-12%2000:00:00
+
+GET {{host}}/datetime/range?start={{start}}&end={{end}}
+
+> {%
+    client.log(response.body);
+
+    client.test("Echo of datetime range", function () {
+        client.assert(response.body.start === "2022-11-01T00:00:00",
+            "Start datetime should be '2022-11-01T00:00:00' ");
+        client.assert(response.body.end === "2024-08-12T00:00:00",
+            "End datetime should be '2024-08-12T00:00:00'")
+    })
+  %}

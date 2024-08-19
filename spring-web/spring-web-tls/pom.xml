@@ -13,22 +13,13 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-web-async</artifactId>
+    <artifactId>spring-web-tls</artifactId>
     <packaging>jar</packaging>
 
-    <name>spring-web-async</name>
-    <description>Spring Async Web Request</description>
-
-    <properties>
-        <spring.security.verson>6.2.3</spring.security.verson>
-    </properties>
+    <name>spring-web-tls</name>
+    <description>Spring Web TLS</description>
 
     <dependencies>
-
-        <dependency>
-            <groupId>spring.start.here</groupId>
-            <artifactId>sfg6-commons</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -37,9 +28,33 @@
         </dependency>
 
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>datasource-proxy-spring-boot-starter</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.simplify4u</groupId>
+            <artifactId>slf4j2-mock</artifactId>
+            <scope>test</scope>
+            <version>2.3.0</version>
         </dependency>
 
     </dependencies>

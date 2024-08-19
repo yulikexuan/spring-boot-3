@@ -22,19 +22,25 @@
     <dependencies>
 
         <dependency>
-            <groupId>spring.start.here</groupId>
-            <artifactId>sfg6-commons</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
     </dependencies>
 
     <modules>
         <module>spring-web-async</module>
+        <module>spring-web-tls</module>
     </modules>
 
 </project>

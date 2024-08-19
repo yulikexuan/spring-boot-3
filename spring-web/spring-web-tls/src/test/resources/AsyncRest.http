@@ -1,0 +1,10 @@
+### GET a String from a callable async endpoint
+
+GET {{host}}/async/callable
+
+> {%
+    client.test("Test Async REST Controller with Callable", function () {
+        client.assert(response.body === ">>> Sorry, I am late.",
+            ">>> The response should be 'Done'");
+    })
+  %}

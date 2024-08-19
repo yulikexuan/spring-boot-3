@@ -129,6 +129,11 @@
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>
+                        <classpathDependencyExcludes>
+                            <classpathDependencyExcludes>
+                                ch.qos.logback:logback-classic
+                            </classpathDependencyExcludes>
+                        </classpathDependencyExcludes>
                     </configuration>
                 </plugin>
 
