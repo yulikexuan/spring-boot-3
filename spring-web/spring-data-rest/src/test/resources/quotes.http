@@ -1,0 +1,3 @@
+### Get the first Quote
+
+GET {{host}}/quotes/1

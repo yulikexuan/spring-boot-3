@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:54315/yulikexuan?currentSchema=spring_data_jdbc
+    username: postgres
+    password: tecsys
+  sql:
+    init:
+      mode: always
+# keytool -genkeypair -alias yulikexuan -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore yulikexuan.spring.boot.3.p12 -validity 365 -storepass D99FD77F
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:yulikexuan.spring.boot.3.p12
+    key-store-password: D99FD77F
+logging:
+  level:
+    net:
+      ttddyy:
+        dsproxy:
+          listener: debug

@@ -1,0 +1,52 @@
+### Get all Buyers
+
+GET {{host}}/buyers
+
+
+### Get the first Buyer
+
+GET {{host}}/buyers/3
+If-None-Match: "1"
+
+> {%
+    client.test("Test the first buyer", function () {
+        client.assert(response.body.name === "john", "The first buyer is john");
+    })
+  %}
+
+### Update Buyer by ID 1
+
+PATCH {{host}}/buyers/1
+Content-Type: application/json
+
+{
+  "email": "john@gmail.com"
+}
+
+### Delete Buyer by ID is disabled
+
+DELETE {{host}}/buyers/1
+
+> {%
+    client.test("Test deleting buyer by id is not allowed", function () {
+        client.assert(response.status === 405, "Could not delete a buyer by it's id");
+    })
+%}
+
+### Create a new Buyer
+
+POST {{host}}/buyers
+Content-Type: application/json
+
+{
+  "name": "yul",
+  "email": "yul@tecsys.com",
+  "level": 1,
+  "active": true,
+  "created": "2024-08-22T00:00:00",
+  "contacts": [
+    {
+      "contactId": 1
+    }
+  ]
+}

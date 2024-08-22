@@ -1,6 +1,7 @@
 package sfg6lab;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.Banner;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -10,7 +11,7 @@ import sfg6lab.domain.service.DataInitService;
 
 
 @Slf4j
-public class Sfg6SpringWebTlsApp {
+public class Sfg6SpringDataRestApp {
 
     public static void main(String... args) {
 

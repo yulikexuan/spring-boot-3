@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="11" name="IntelliJ IDEA HTTP Client">
+  <testsuite tests="11" name="buyers" failures="0" errors="0" skip="0">
+    <testcase classname="http.Get_the_amount_number_of_all_buyers" name="Response" time="1.009" />
+    <testcase classname="http.Get_the_amount_number_of_all_buyers" name="Buyer's amount response shoulc be available." time="0.005" />
+    <testcase classname="http.Get_the_amount_number_of_all_buyers" name="Response Handler" time="0.186" />
+    <testcase classname="http.Get_all_buyers" name="Response" time="0.048" />
+    <testcase classname="http.Get_all_buyers" name="The first buyer is John" time="0.003" />
+    <testcase classname="http.Get_all_buyers" name="Have 10 buyers" time="0.001" />
+    <testcase classname="http.Get_all_buyers" name="Response Handler" time="0.022" />
+    <testcase classname="http.Get_all_created_datetime_of_buyers" name="Response" time="0.035" />
+    <testcase classname="http.Get_all_created_datetime_of_buyers" name="The first date should be 2020-08-03" time="0.002" />
+    <testcase classname="http.Get_all_created_datetime_of_buyers" name="Have 9 LocalDateTime Values" time="0.002" />
+    <testcase classname="http.Get_all_created_datetime_of_buyers" name="Response Handler" time="0.019" />
+  </testsuite>
+</testsuites>
+
