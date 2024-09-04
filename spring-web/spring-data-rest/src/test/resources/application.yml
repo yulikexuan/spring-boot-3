@@ -8,9 +8,11 @@ spring:
       mode: always
 logging:
   level:
-    org.springframework.data.jdbc: info
-    org.springframework.jdbc: info
-    sql: info
+    root: INFO
+    org.springframework.data.jdbc: INFO
+    org.springframework.jdbc: INFO
+    sql: INFO
+    sfg6lab: INFO
 server:
   error:
     include-binding-errors: always

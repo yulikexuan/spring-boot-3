@@ -1,0 +1,39 @@
+### Get all available endpoints
+
+GET {{host}}/actuator
+
+
+### See health info
+
+GET {{host}}/actuator/health
+
+
+### Test custom actuator - Fetching
+
+GET {{host}}/actuator/custom
+
+
+### Test custom actuator - Writing
+
+POST {{host}}/actuator/custom
+Content-Type: application/json
+
+{
+  "value": "John Doe"
+}
+
+
+### Get Infos
+
+GET {{host}}/actuator/info
+
+
+### Get actuator metrics
+
+GET {{host}}/actuator/metrics
+
+
+### Get MAX Memory
+
+GET {{host}}/actuator/metrics/jvm.memory.max
+

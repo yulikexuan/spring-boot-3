@@ -1,4 +1,6 @@
 spring:
+  main:
+    log-startup-info: false
   datasource:
     url: jdbc:postgresql://localhost:54315/yulikexuan?currentSchema=spring_data_jdbc
     username: postgres
@@ -18,3 +20,17 @@ logging:
       ttddyy:
         dsproxy:
           listener: debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "custom,info,health,env,beans,metrics"
+  endpoint:
+    health:
+      show-details: always
+    info:
+      enabled: true
+info:
+  build:
+    author: yul
+    version: 2024-SNAPSHOT
