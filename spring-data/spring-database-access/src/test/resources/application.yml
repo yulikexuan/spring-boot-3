@@ -9,6 +9,3 @@ spring:
     password: tecsys
 
 # https://dev.to/therealdumbprogrammer/making-spring-transactions-transparent-with-detailed-logging-1n69
-logging:
-  level:
-    org.springframework.orm.jpa.JpaTransactionManager: debug

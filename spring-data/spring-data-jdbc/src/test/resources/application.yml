@@ -6,8 +6,3 @@ spring:
   sql:
     init:
       mode: always
-logging:
-  level:
-    org.springframework.data.jdbc: info
-    org.springframework.jdbc: info
-    sql: info

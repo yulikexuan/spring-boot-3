@@ -3,7 +3,6 @@
 package sfg6lab.config;
 
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 
-@Slf4j
+// @Slf4j
 class CustomerDeliveryOne2ManyIT extends Sfg6SpringDataJdbcIT {
 
     private static final String CITY = "Montréal";
@@ -40,6 +39,7 @@ class CustomerDeliveryOne2ManyIT extends Sfg6SpringDataJdbcIT {
 
     @BeforeAll
     void beforeAll() {
+        // log.info(">>> Starting Test");
         customerRepository.saveAll(initData());
     }
 

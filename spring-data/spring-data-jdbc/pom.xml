@@ -28,6 +28,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>p6spy-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
@@ -42,6 +47,12 @@
             <groupId>spring.start.here</groupId>
             <artifactId>sfg6-commons</artifactId>
         </dependency>
+
+        <!--<dependency>
+            <groupId>org.simplify4u</groupId>
+            <artifactId>slf4j2-mock</artifactId>
+            <scope>test</scope>
+        </dependency>-->
 
     </dependencies>
 

@@ -3,6 +3,7 @@
 package sfg6lab.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+@Slf4j
 @WebMvcTest
 @Import(BuddhaQuotesController.class)
 @ContextConfiguration(classes={Sfg6SpringWebTlsApp.class})
@@ -39,7 +41,7 @@ class BuddhaQuotesControllerIT {
 
     @Test
     void mockMvc_Should_Be_Available() throws Exception {
-
+        log.info(">>> Validating MockMvc availability");
         mockMvc.perform(get("https://localhost:8443/buddha-quotes?index=1"))
                 .andDo(print())
                 .andExpect(status().isOk());

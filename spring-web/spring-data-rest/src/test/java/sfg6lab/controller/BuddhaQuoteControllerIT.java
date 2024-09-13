@@ -3,6 +3,7 @@
 package sfg6lab.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 
+@Slf4j
 @WebMvcTest(BuddhaQuoteController.class)
 @ContextConfiguration(classes={Sfg6SpringDataRestApp.class})
 @ExtendWith(MockitoExtension.class)
@@ -38,7 +40,7 @@ class BuddhaQuoteControllerIT {
 
     @BeforeEach
     void setUp() {
-
+        log.info(">>> Valicating MockBean availability");
     }
 
     @Test

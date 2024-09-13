@@ -23,7 +23,7 @@ public class Sfg6SpringDataJdbcApp {
                 .build(args)
                 .run(args);
 
-        System.out.println(">>> Press Enter Key to Continue ... ");
+        log.info(">>> Press Enter Key to Continue ... ");
         new Scanner(System.in).nextLine();
 
         System.exit(SpringApplication.exit(ctx));

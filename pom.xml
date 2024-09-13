@@ -69,12 +69,12 @@
                 <version>${datasource-proxy-spring-boot-starter.version}</version>
             </dependency>
 
-            <dependency>
+            <!--<dependency>
                 <groupId>org.simplify4u</groupId>
                 <artifactId>slf4j2-mock</artifactId>
                 <scope>test</scope>
                 <version>${slf4j2-mock.version}</version>
-            </dependency>
+            </dependency>-->
 
         </dependencies>
 
@@ -106,6 +106,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
     </dependencies>
@@ -146,11 +151,14 @@
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>
-                        <classpathDependencyExcludes>
+                        <!-- This is for testing slf4j-mock, to test logging behaviors -->
+                        <!-- Not only commenting out this config,
+                             but also comment out all slf4j-mock dependencies for test scope -->
+                        <!--<classpathDependencyExcludes>
                             <classpathDependencyExcludes>
                                 ch.qos.logback:logback-classic
                             </classpathDependencyExcludes>
-                        </classpathDependencyExcludes>
+                        </classpathDependencyExcludes>-->
                     </configuration>
                 </plugin>
 
@@ -205,7 +213,7 @@
     </build>
 
     <modules>
-        <module>spring-java-21</module>
+        <!--<module>spring-java-21</module>-->
         <module>spring-solid</module>
         <module>spring-container-lab</module>
         <module>spring-environment-lab</module>
