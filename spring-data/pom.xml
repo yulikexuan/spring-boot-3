@@ -32,6 +32,7 @@
     <modules>
         <module>spring-database-access</module>
         <module>spring-data-jdbc</module>
+        <module>spring-db-test</module>
     </modules>
 
 </project>

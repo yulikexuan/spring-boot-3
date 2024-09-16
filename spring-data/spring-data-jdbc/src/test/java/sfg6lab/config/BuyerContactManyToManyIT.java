@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @Slf4j
-class BuyerContactManyToManyIT extends Sfg6SpringDataJdbcIT{
+class BuyerContactManyToManyIT extends Sfg6SpringDataJdbcIT {
 
     private static final int AMOUNT_OF_BUYERS = 10;
     private static final int AMOUNT_OF_CONTACTS = 3;

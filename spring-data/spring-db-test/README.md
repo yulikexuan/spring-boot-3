@@ -1,4 +1,4 @@
-# Spring Data JDBC 
+# Spring Boot - DB Testing 
 
 Hi, I know I need dependency org.flywaydb:flyway-core to use flyway for db migration, but I don't know if I need dependency org.flywaydb:flyway-database-postgresql. Do you know why?
 
@@ -169,5 +169,3 @@ If you have specific needs for filtering, you can customize the p6spy.config.exc
 The logging format and appender are configurable. You can use com.p6spy.engine.spy.appender.CustomLineFormat for more custom formats if needed.
 By following these steps, you should be able to prevent p6spy from logging Flyway's migration SQL statements, ensuring a cleaner SQL log output for your application.
 If you have any further questions or need additional assistance, feel free to ask!
-
-

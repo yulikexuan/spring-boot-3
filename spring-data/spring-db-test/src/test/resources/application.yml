@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:54315/yulikexuan?currentSchema=spring_data_jdbc
+    url: jdbc:postgresql://localhost:54315/yulikexuan?currentSchema=spring_db_test
     username: postgres
     password: tecsys
   sql:
@@ -9,4 +9,4 @@ spring:
   flyway:
     enabled: true
     location: classpath:db/migration
-    baseline-on-migrate: true
+    # baseline-on-migrate: true

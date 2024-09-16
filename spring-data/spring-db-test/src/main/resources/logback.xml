@@ -14,8 +14,8 @@
     <logger name="org.springframework.transaction" level="INFO" />
     <logger name="org.jline" level="WARN" />
     <logger name="sfg6lab" level="DEBUG" />
-    <logger name="org.flywaydb" level="WARN"/>
-    <logger name="p6spy" level="INFO"/>
+    <logger name="org.flywaydb" level="INFO"/>
+    <logger name="p6spy" level="WARN" />
 
     <root level="info">
         <appender-ref ref="STDOUT" />

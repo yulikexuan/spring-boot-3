@@ -13,11 +13,11 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-data-jdbc</artifactId>
+    <artifactId>spring-db-test</artifactId>
     <packaging>jar</packaging>
 
-    <name>spring-data-jdbc</name>
-    <description>Spring Data JDBC</description>
+    <name>spring-db-test</name>
+    <description>Test Persistence Layer of Spring Boot App</description>
 
     <dependencies>
 
@@ -54,17 +54,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>spring.start.here</groupId>
-            <artifactId>sfg6-commons</artifactId>
-        </dependency>
-
-        <!--<dependency>
-            <groupId>org.simplify4u</groupId>
-            <artifactId>slf4j2-mock</artifactId>
-            <scope>test</scope>
-        </dependency>-->
 
     </dependencies>
 

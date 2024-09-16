@@ -28,7 +28,7 @@ abstract class Sfg6SpringDataJdbcIT {
 
     @BeforeAll
     void beforeAll() {
-        // Loaded all records by running data.sql
+        // Loaded all records by running _data.sql
     }
 
     @AfterAll
