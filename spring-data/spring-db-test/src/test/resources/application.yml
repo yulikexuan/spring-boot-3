@@ -6,7 +6,3 @@ spring:
   sql:
     init:
       mode: always
-  flyway:
-    enabled: true
-    location: classpath:db/migration
-    # baseline-on-migrate: true

@@ -1,4 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS spring_db_test;
+SET schema 'spring_db_test';
 SET search_path TO spring_db_test,public;
 
 CREATE TABLE IF NOT EXISTS spring_db_test.buyers(id serial PRIMARY KEY, active boolean, name varchar(32) UNIQUE NOT NULL, email varchar(32) NOT NULL, level integer, created timestamp NOT NULL);

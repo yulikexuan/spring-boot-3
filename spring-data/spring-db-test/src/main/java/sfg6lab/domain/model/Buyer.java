@@ -14,7 +14,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-@Table("buyers")
+@Table(value = "buyers")
+// @Table(value = "spring-db-test\".\"buyers")
 public record Buyer(@Id Long id,
                     String name,
                     String email,

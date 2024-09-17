@@ -10,3 +10,4 @@ spring:
     enabled: true
     location: classpath:db/migration
     # baseline-on-migrate: true
+    default-schema: "spring-db-test"
