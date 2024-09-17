@@ -1,9 +1,15 @@
+DROP SCHEMA IF EXISTS spring_data_jdbc CASCADE;
 CREATE SCHEMA IF NOT EXISTS spring_db_test;
 SET schema 'spring_db_test';
 SET search_path TO spring_db_test,public;
 
+DROP TABLE IF EXISTS spring_data_jdbc.buyers CASCADE;
 CREATE TABLE IF NOT EXISTS spring_db_test.buyers(id serial PRIMARY KEY, active boolean, name varchar(32) UNIQUE NOT NULL, email varchar(32) NOT NULL, level integer, created timestamp NOT NULL);
+
+DROP TABLE IF EXISTS spring_data_jdbc.contacts CASCADE;
 CREATE TABLE IF NOT EXISTS spring_db_test.contacts (id serial PRIMARY KEY , street VARCHAR(30) NOT NULL, city VARCHAR(20) NOT NULL);
+
+DROP TABLE IF EXISTS spring_data_jdbc.buyers_contacts CASCADE;
 CREATE TABLE IF NOT EXISTS spring_db_test.buyers_contacts (buyer_id BIGINT, contact_id BIGINT, FOREIGN KEY (buyer_id) REFERENCES spring_db_test.buyers(id), FOREIGN KEY (contact_id) REFERENCES spring_db_test.contacts(id));
 
 INSERT INTO spring_db_test.contacts (street, city) VALUES ('New York City', '11, 5th Avenue');

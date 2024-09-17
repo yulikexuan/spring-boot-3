@@ -6,3 +6,8 @@ spring:
   sql:
     init:
       mode: always
+  flyway:
+    enabled: false
+    # location: classpath:db/migration
+    # baseline-on-migrate: true
+    # default-schema: "spring-db-test"

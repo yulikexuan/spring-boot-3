@@ -10,14 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import sfg6lab.domain.model.Buyer;
+import sfg6lab.domain.model.Contact;
 
-import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,11 +36,14 @@ class BuyerContactManyToManyRepositoryTest {
     private static final PostgreSQLContainer SQL_CONTAINER;
 
     static {
+
         SQL_CONTAINER =
                 (PostgreSQLContainer) (new PostgreSQLContainer("postgres:15")
                         .withDatabaseName("yulikexuan")
                         .withUsername("postgres")
-                        .withPassword("tecsys").withUrlParam("currentSchema", "spring-db-test"));
+                        .withPassword("tecsys")
+                        .withUrlParam("currentSchema", "spring-db-test"));
+
         SQL_CONTAINER.start();
     }
 
@@ -54,14 +55,13 @@ class BuyerContactManyToManyRepositoryTest {
     }
 
     @Autowired
-    private DataSource dataSource;
+    private ContactRepository contactRepository;
 
     @Autowired
     private BuyerRepository buyerRepository;
 
     @BeforeAll
     void beforeAll() {
-        List<Buyer> buyers = buyerRepository.findAll();
     }
 
     @AfterAll
@@ -76,8 +76,6 @@ class BuyerContactManyToManyRepositoryTest {
     void buyer_Repository_Should_Be_Available() {
 
         // Given
-        assertThat(dataSource).isNotNull();
-
         List<Buyer> buyers = buyerRepository.findAll();
 
         // When
@@ -89,4 +87,16 @@ class BuyerContactManyToManyRepositoryTest {
         assertThat(buyerOpt).isEmpty();
     }
 
-} 
+    @Test
+    void contact_Repository_Should_Be_Available() {
+
+        // Given
+
+        // When
+        List<Contact> contacts = contactRepository.findAll();
+
+        // Then
+        assertThat(contacts).hasSize(3);
+    }
+
+}
