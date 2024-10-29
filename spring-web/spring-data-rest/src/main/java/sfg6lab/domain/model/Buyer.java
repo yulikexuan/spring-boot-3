@@ -3,7 +3,6 @@
 package sfg6lab.domain.model;
 
 
-import com.google.common.collect.Sets;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
@@ -14,6 +13,7 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,7 +41,7 @@ public class Buyer {
     LocalDateTime created;
 
     @MappedCollection(idColumn = "buyer_id")
-    Set<BuyerContact> contacts = Sets.newHashSet();
+    Set<BuyerContact> contacts = new HashSet<>();
 
     public static Buyer of(@NonNull String name,
                            @NonNull String email,

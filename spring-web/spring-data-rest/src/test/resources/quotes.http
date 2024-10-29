@@ -1,3 +1,8 @@
 ### Get the first Quote
 
 GET {{host}}/quotes/1
+
+
+### Get the Barcode
+
+GET {{host}}/barcode?code=tecsys-itopia

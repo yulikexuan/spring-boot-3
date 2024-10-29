@@ -16,6 +16,8 @@ import sfg6lab.controller.data.DataMaper;
 import sfg6lab.domain.model.Buyer;
 import sfg6lab.domain.repository.BuyerRepository;
 
+import java.util.List;
+
 
 @RepositoryRestController
 @RequiredArgsConstructor
@@ -23,6 +25,20 @@ class BuyerController {
 
     private final DataMaper<Buyer, BuyerDto> buyerMapper;
     private final BuyerRepository buyerRepository;
+
+    @GetMapping("/buyers")
+    public ResponseEntity<List<BuyerDto>> getAllBuyers() {
+
+        List<Buyer> allBuyers = this.buyerRepository.findAll();
+
+        if (allBuyers == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<BuyerDto> data = allBuyers.stream().map(buyerMapper::toDto).toList();
+
+        return ResponseEntity.ok(data);
+    }
 
     @GetMapping("/buyers/{id}")
     public ResponseEntity<BuyerDto> getBuyer(@PathVariable Long id) {

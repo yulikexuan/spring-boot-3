@@ -71,8 +71,10 @@ class BuyersController {
      * Internally, this is handled by the Jackson library
      */
     @GetMapping(path = "/all") //, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Buyer>> getAllBuyers() {
-        return ResponseEntity.ok(buyerRepository.findAll());
+    public ResponseEntity<List<BuyerDto>> getAllBuyers() {
+
+        return ResponseEntity.ok(buyerRepository.findAll().stream()
+                .map(buyerMapper::toDto).toList());
     }
 
     /*

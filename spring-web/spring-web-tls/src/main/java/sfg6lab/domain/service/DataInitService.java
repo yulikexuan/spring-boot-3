@@ -25,17 +25,20 @@ public class DataInitService {
 
     public long initialize() {
 
-        contactRepository.saveAll(List.of(
-                Contact.of(11),
-                Contact.of(22),
-                Contact.of(33)));
-
+        contactRepository.saveAll(CONTACTS);
         buyerRepository.saveAll(initData(contactRepository.findAll()));
 
         return buyerRepository.count();
     }
 
-    private List<Buyer> initData(List<Contact> contacts) {
+    static final List<Contact> CONTACTS = List.of(
+            Contact.of(11),
+            Contact.of(22),
+            Contact.of(33));
+
+    public static final List<Buyer> BUYERS = initData(CONTACTS);
+
+    static List<Buyer> initData(List<Contact> contacts) {
 
         return List.of(
                 Buyer.of(

@@ -26,9 +26,12 @@ import sfg6lab.controller.data.BuyerMapper;
 import sfg6lab.controller.data.DataMaper;
 import sfg6lab.domain.model.Buyer;
 import sfg6lab.domain.model.YearMonthRange;
+import sfg6lab.domain.service.DataInitService;
 import sfg6lab.servlet.GreetingServlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.function.Supplier;
 
 
 @Slf4j
@@ -85,6 +88,11 @@ public class Sfg6AppCfg {
     @Bean
     DataMaper<Buyer, BuyerDto> buyerMapper() {
         return new BuyerMapper();
+    }
+
+    @Bean
+    Supplier<List<Buyer>> buyerSamplesSupplier() {
+        return () -> DataInitService.BUYERS;
     }
 
 }///:~
