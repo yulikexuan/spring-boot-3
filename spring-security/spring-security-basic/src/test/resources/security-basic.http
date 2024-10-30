@@ -1,0 +1,109 @@
+### ijhttp buyers.http -e dev -v http-client.env.json -L HEADERS --insecure=true
+
+### Get the amount number of all buyers
+GET {{host}}/ssia/hello
+Authorization: Basic {{username}} {{password}}
+Accept: text/plain
+
+> {%
+    client.test("Buyer's amount response shoulc be available.", function () {
+        client.assert(response.status === 200, "Response is OK!");
+        client.assert(response.body === "Hello!");
+        client.log(">>> Passed!");
+    })
+ %}
+
+################################################################################
+
+### Get all buyers
+GET {{host}}/buyers/all
+Accept: application/json
+
+> {%
+
+    client.test("The first buyer is John", function () {
+        client.assert(response.body[0].name === "john", "name should be 'john'");
+        client.log(">>> Passed 1!");
+    });
+
+    client.test("Have 10 buyers", function () {
+        client.assert(response.body.length === 10, "10 Buyers");
+        client.log(">>> Passed 2!");
+    });
+
+%}
+
+### Get all created datetime of buyers
+GET {{host}}/buyers/all/created
+
+> {%
+
+    client.test("The first date should be 2020-08-03", function () {
+        client.assert(response.body[0] === "2020-08-03T00:00:00", "The earliest date is 2020-08-03");
+        client.log(">>> Passed 1!");
+    });
+
+    client.test("Have 9 LocalDateTime Values", function () {
+        client.assert(response.body.length === 9, "9 LocalDateTime Values");
+        client.log(">>> Passed 2!");
+    });
+
+%}
+
+### Get one buyer by id equals to 1
+GET {{host}}/buyers/1
+
+> {%
+    client.test("Only one buyer for one id", function () {
+        client.assert(response.body.id === 1, "Should have id 1")
+    })
+  %}
+
+### Get one buyer by id equals to 10
+GET {{host}}/buyers/10
+
+> {%
+    client.test("Only one buyer for one id", function () {
+        client.assert(response.body.id === 10, "Should have id 10")
+    })
+%}
+
+### Get none buyer by id greater than 10
+GET {{host}}/buyers/17
+
+> {%
+    client.test("Nothing found", function () {
+        client.assert(response.status === 404, "Status code should be 404")
+    })
+%}
+
+### Get contact of a buyer by buyer id 1 and contact id 2
+GET {{host}}/buyers/1/contacts/2
+
+> {%
+      client.test("Found a contact", function () {
+          client.assert(response.status === 200, "Status code should be 200");
+          client.assert(response.body.id === 2, "Contact id should be 2");
+          client.assert(response.body.street === "22, 5th Avenue");
+          client.assert(response.body.city === "New York City");
+      })
+%}
+
+### Get Buyers between two created time
+GET {{host}}/buyers/all/created-time?from=2020-09-15%2000:00:00&to=2021-06-30%2000:00:00
+
+> {%
+    client.test("Should found 5 buyers between two created times", function () {
+        client.assert(response.status === 200, "Status code should be 200");
+        client.assert(response.body.length === 5, "Found 5 Buyers");
+    })
+  %}
+
+### Get Specific Buyer Page / 3 entities per page / the second page / Desc
+GET {{host}}/buyers/all/stream?page=1&size=3&sort=created,desc
+
+### Get Buyer Page
+GET {{host}}/buyers/all/stream
+
+### ### Get Buyer Page
+GET {{host}}/buyers/all/page

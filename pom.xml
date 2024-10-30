@@ -224,6 +224,7 @@
         <module>spring-proxy</module>
         <module>spring-data</module>
         <module>spring-web</module>
+        <module>spring-security</module>
     </modules>
 
 </project>
