@@ -1,12 +1,24 @@
 ### ijhttp buyers.http -e dev -v http-client.env.json -L HEADERS --insecure=true
 
-### Get the amount number of all buyers
+### Get the greeting message without any authentication
+GET {{host}}/ssia/hello
+Accept: text/plain
+
+> {%
+    client.test(">>> Response status should be 401 ...", function() {
+        client.assert(response.status === 401, "Unauthorized!");
+        client.assert(response.body === null);
+    });
+  %}
+
+
+### Get the greeting message with basic authentication
 GET {{host}}/ssia/hello
 Authorization: Basic {{username}} {{password}}
 Accept: text/plain
 
 > {%
-    client.test("Buyer's amount response shoulc be available.", function () {
+    client.test("Should have greeting response.", function () {
         client.assert(response.status === 200, "Response is OK!");
         client.assert(response.body === "Hello!");
         client.log(">>> Passed!");
