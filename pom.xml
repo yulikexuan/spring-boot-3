@@ -1,230 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+							 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
 
-    <groupId>spring.start.here</groupId>
-    <artifactId>spring-boot-3</artifactId>
-    <version>2024-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	<groupId>spring.start.here</groupId>
+	<artifactId>spring-boot-3</artifactId>
+	<version>2024-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <name>spring-boot-3</name>
-    <description>The Lab of Spring Boot 3 and Spring Framework 6</description>
+	<name>spring-boot-3</name>
+	<description>The Lab of Spring Boot 3 and Spring Framework 6</description>
 
-    <properties>
-        <java.version>21</java.version>
-        <p6spy.version>1.9.1</p6spy.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-shell.version>3.2.2</spring-shell.version>
-        <guava.version>33.0.0-jre</guava.version>
-        <byte-buddy.version>1.14.17</byte-buddy.version>
-        <datasource-proxy-spring-boot-starter.version>
-            1.9.1
-        </datasource-proxy-spring-boot-starter.version>
-        <slf4j2-mock.version>2.3.0</slf4j2-mock.version>
-    </properties>
+	<properties>
+		<java.version>21</java.version>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<p6spy.version>1.9.1</p6spy.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<spring-shell.version>3.2.2</spring-shell.version>
+		<guava.version>33.0.0-jre</guava.version>
+		<byte-buddy.version>1.14.17</byte-buddy.version>
+		<datasource-proxy-spring-boot-starter.version>
+			1.9.1
+		</datasource-proxy-spring-boot-starter.version>
+		<slf4j2-mock.version>2.3.0</slf4j2-mock.version>
+	</properties>
 
-    <dependencyManagement>
+	<dependencyManagement>
 
-        <dependencies>
+		<dependencies>
 
-            <dependency>
-                <groupId>spring.start.here</groupId>
-                <artifactId>sfg6-commons</artifactId>
-                <version>2024-SNAPSHOT</version>
-            </dependency>
+			<dependency>
+				<groupId>spring.start.here</groupId>
+				<artifactId>sfg6-commons</artifactId>
+				<version>2024-SNAPSHOT</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.github.gavlyukovskiy</groupId>
-                <artifactId>p6spy-spring-boot-starter</artifactId>
-                <version>${p6spy.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>com.github.gavlyukovskiy</groupId>
+				<artifactId>p6spy-spring-boot-starter</artifactId>
+				<version>${p6spy.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>org.springframework.shell</groupId>
-                <artifactId>spring-shell-starter</artifactId>
-                <version>${spring-shell.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>org.springframework.shell</groupId>
+				<artifactId>spring-shell-starter</artifactId>
+				<version>${spring-shell.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.github.gavlyukovskiy</groupId>
-                <artifactId>datasource-proxy-spring-boot-starter</artifactId>
-                <version>${datasource-proxy-spring-boot-starter.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>com.github.gavlyukovskiy</groupId>
+				<artifactId>datasource-proxy-spring-boot-starter</artifactId>
+				<version>${datasource-proxy-spring-boot-starter.version}</version>
+			</dependency>
 
-            <!--<dependency>
-                <groupId>org.simplify4u</groupId>
-                <artifactId>slf4j2-mock</artifactId>
-                <scope>test</scope>
-                <version>${slf4j2-mock.version}</version>
-            </dependency>-->
+		</dependencies>
 
-        </dependencies>
+	</dependencyManagement>
 
-    </dependencyManagement>
+	<dependencies>
 
-    <dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-properties-migrator</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-properties-migrator</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
-    <build>
+	<build>
 
-        <pluginManagement>
+		<pluginManagement>
 
-            <plugins>
+			<plugins>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                    </configuration>
-                </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
 
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                        <excludes>
-                            <exclude>
-                                <groupId>org.projectlombok</groupId>
-                                <artifactId>lombok</artifactId>
-                            </exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<excludes>
+							<exclude>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+							</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <argLine>-Xshare:off</argLine>
-                        <includes>
-                            <include>**/*Test.java</include>
-                        </includes>
-                        <!-- This is for testing slf4j-mock, to test logging behaviors -->
-                        <!-- Not only commenting out this config,
-                             but also comment out all slf4j-mock dependencies for test scope -->
-                        <!--<classpathDependencyExcludes>
-                            <classpathDependencyExcludes>
-                                ch.qos.logback:logback-classic
-                            </classpathDependencyExcludes>
-                        </classpathDependencyExcludes>-->
-                    </configuration>
-                </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<argLine>
+							-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
+							-Xshare:off
+						</argLine>
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+						<dependenciesToScan>org.mockito</dependenciesToScan>
+						<!-- This is for testing slf4j-mock, to test logging behaviors -->
+						<!-- Not only commenting out this config,
+							 but also comment out all slf4j-mock dependencies for test scope -->
+						<!--<classpathDependencyExcludes>
+							<classpathDependencyExcludes>
+								ch.qos.logback:logback-classic
+							</classpathDependencyExcludes>
+						</classpathDependencyExcludes>-->
+					</configuration>
+				</plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <configuration>
-                        <includes>
-                            <include>**/*IT.java</include>
-                        </includes>
-                        <testFailureIgnore>true</testFailureIgnore>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>integration-test</id>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<configuration>
+						<includes>
+							<include>**/*IT.java</include>
+						</includes>
+						<testFailureIgnore>true</testFailureIgnore>
+					</configuration>
+					<executions>
+						<execution>
+							<id>integration-test</id>
+							<goals>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 
-            </plugins>
+			</plugins>
 
-        </pluginManagement>
+		</pluginManagement>
 
-        <plugins>
+		<plugins>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
 
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
 
-        </plugins>
+		</plugins>
 
-    </build>
+	</build>
 
-    <modules>
-        <!--<module>spring-java-21</module>-->
-        <module>spring-solid</module>
-        <module>spring-container-lab</module>
-        <module>spring-environment-lab</module>
-        <module>spring-test-driven</module>
-        <module>spring-scheduling</module>
-        <module>spring-aspect-lab</module>
-        <module>spring-utils</module>
-        <module>spring-proxy</module>
-        <module>spring-data</module>
-        <module>spring-web</module>
-        <module>spring-security</module>
-    </modules>
+	<modules>
+		<!--<module>spring-java-21</module>-->
+		<module>spring-solid</module>
+		<module>spring-container-lab</module>
+		<module>spring-environment-lab</module>
+		<module>spring-test-driven</module>
+		<module>spring-scheduling</module>
+		<module>spring-aspect-lab</module>
+		<module>spring-utils</module>
+		<module>spring-proxy</module>
+		<module>spring-data</module>
+		<module>spring-web</module>
+		<module>spring-security</module>
+		<module>spring-ai-intro</module>
+	</modules>
 
 </project>

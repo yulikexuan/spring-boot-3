@@ -1,5 +1,3 @@
-### ijhttp buyers.http -e dev -v http-client.env.json -L HEADERS --insecure=true
-
 ### Get the greeting message without any authentication
 GET {{host}}/ssia/hello
 Accept: text/plain

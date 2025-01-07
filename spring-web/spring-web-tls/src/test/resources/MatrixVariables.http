@@ -1,0 +1,16 @@
+### Applys Matrix Variables
+POST {{host}}/mv/pets/42;iq=11;eq=22
+Accept: application/json
+
+
+### Makes Matrix Variables be Disambiguated
+POST {{host}}/mv/owners/42;iq=11;eq=22/pets/21;iq=33;eq=44
+Accept: application/json
+
+### Processes Matrix Variables with MultiValueMap
+POST {{host}}/mv/v2/owners/42;iq=11;eq=22/pets/21;iq=33;eq=44
+Accept: application/json
+
+### Path Variable contains Matrix Variables only
+POST {{host}}/mv/owners/firstName=Donald;lastName=Trump
+Accept: application/json

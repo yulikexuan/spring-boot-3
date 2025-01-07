@@ -4,6 +4,7 @@
 package sfg6lab.config;
 
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootConfiguration;
@@ -21,6 +22,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.UrlPathHelper;
 import sfg6lab.controller.data.BuyerDto;
 import sfg6lab.controller.data.BuyerMapper;
 import sfg6lab.controller.data.DataMaper;
@@ -56,13 +60,20 @@ import java.util.function.Supplier;
                 "sfg6lab.controller"})
 @EntityScan(basePackages = { "sfg6lab.domain.model" })
 @EnableJdbcRepositories(basePackages = { "sfg6lab.domain.repository" })
-public class Sfg6AppCfg {
+public class Sfg6AppCfg implements WebMvcConfigurer {
 
     @Value("${sfg6.web.url-mapping.greeting}")
     private String greetingUrl;
 
     @Value("${sfg6.app.icon-path}")
     private String iconPath;
+
+    @Override
+    public void configurePathMatch(@NonNull final PathMatchConfigurer configurer) {
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        urlPathHelper.setRemoveSemicolonContent(false);
+        configurer.setUrlPathHelper(urlPathHelper);
+    }
 
     @Bean
     // Do not require @ServletComponentScan
