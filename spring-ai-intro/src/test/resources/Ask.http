@@ -1,0 +1,69 @@
+### Just Ask a Question
+
+POST {{host}}/spring-ai/ask
+Content-Type: application/json
+Accept: application/json
+
+{ "question" : "Do you think it's still safe to go to China now?" }
+
+> {%
+    client.log(response.body.answer);
+  %}
+
+
+### Ask for the capital name of a country or state
+
+POST {{host}}/spring-ai/capital
+Content-Type: application/json
+Accept: application/json
+
+{ "countryOrState": "JAPAN" }
+
+> {%
+    client.log(response.body.answer);
+
+    client.test("Validating the result", function () {
+        client.assert(response.body.answer.trim().length > 0,
+            "Should have an answer for capital");
+        client.log(">>> Passed 1!");
+    });
+%}
+
+
+### Ask for the capital name of a country or state
+
+POST {{host}}/spring-ai/capital/details
+Content-Type: application/json
+Accept: application/json
+
+{ "countryOrState": "British Columbia" }
+
+> {%
+    client.log(response.body.answer);
+
+    client.test("Validating the result", function () {
+        client.assert(response.body.answer.trim().length > 0,
+            "Should have an answer for capital");
+        client.log(">>> Passed 1!");
+    });
+%}
+
+
+### Request caital city in json with schema
+
+// @connection-timeout 60 m
+POST {{host}}/spring-ai/capital-schema
+Content-Type: application/json
+Accept: application/json
+
+{ "countryOrState": "Taiwan" }
+
+> {%
+    client.log(response.body);
+
+    client.test("Validating the result", function () {
+        client.assert(response.body.capital.trim().length > 0,
+            "Should have an answer for capital");
+        client.log(">>> Passed 1!");
+    });
+%}
