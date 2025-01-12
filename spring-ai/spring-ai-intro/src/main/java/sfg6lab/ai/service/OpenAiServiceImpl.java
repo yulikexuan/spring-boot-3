@@ -14,10 +14,7 @@ import org.springframework.ai.converter.BeanOutputConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-import sfg6lab.ai.domain.model.Answer;
-import sfg6lab.ai.domain.model.CapitalRequest;
-import sfg6lab.ai.domain.model.CapitalResponse;
-import sfg6lab.ai.domain.model.Question;
+import sfg6lab.ai.domain.model.*;
 
 import java.util.Map;
 
@@ -69,6 +66,26 @@ final class OpenAiServiceImpl implements OpenAiService {
 
         BeanOutputConverter<CapitalResponse> converter =
                 new BeanOutputConverter<>(CapitalResponse.class);
+        String format = converter.getFormat();
+
+        PromptTemplate promptTemplate = new PromptTemplate(capitalSchemaPrompt);
+        Prompt prompt = promptTemplate.create(Map.of(
+                CAPITAL_PROMPT_PARAM, capitalRequest.countryOrState(),
+                "format", format));
+
+        ChatResponse response = chatModel.call(prompt);
+
+        var content = response.getResult().getOutput().getContent();
+
+        return converter.convert(content);
+    }
+
+    @Override
+    public CapitalDetailsResponse requestCapitalDetails(CapitalRequest capitalRequest) {
+
+        BeanOutputConverter<CapitalDetailsResponse> converter =
+                new BeanOutputConverter<>(CapitalDetailsResponse.class);
+
         String format = converter.getFormat();
 
         PromptTemplate promptTemplate = new PromptTemplate(capitalSchemaPrompt);

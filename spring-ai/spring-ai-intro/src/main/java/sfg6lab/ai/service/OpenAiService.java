@@ -3,10 +3,7 @@
 package sfg6lab.ai.service;
 
 
-import sfg6lab.ai.domain.model.Answer;
-import sfg6lab.ai.domain.model.CapitalRequest;
-import sfg6lab.ai.domain.model.CapitalResponse;
-import sfg6lab.ai.domain.model.Question;
+import sfg6lab.ai.domain.model.*;
 
 
 public interface OpenAiService {
@@ -20,4 +17,6 @@ public interface OpenAiService {
     Answer getCapitalDetails(CapitalRequest capitalRequest);
 
     CapitalResponse requestCapital(CapitalRequest capitalRequest);
+
+    CapitalDetailsResponse requestCapitalDetails(CapitalRequest capitalRequest);
 }

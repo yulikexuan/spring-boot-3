@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sfg6lab.ai.domain.model.Answer;
-import sfg6lab.ai.domain.model.CapitalRequest;
-import sfg6lab.ai.domain.model.CapitalResponse;
-import sfg6lab.ai.domain.model.Question;
+import sfg6lab.ai.domain.model.*;
 import sfg6lab.ai.service.OpenAiService;
 
 
@@ -39,8 +36,16 @@ class QuestionController {
     }
 
     @PostMapping("/capital-schema")
-    public CapitalResponse capitalRequest(@RequestBody CapitalRequest capitalRequest) {
+    public CapitalResponse capitalRequest(
+            @RequestBody CapitalRequest capitalRequest) {
         return openAiService.requestCapital(capitalRequest);
+    }
+
+    @PostMapping("/capital-details-schema")
+    public CapitalDetailsResponse capitalDetailsResponse(
+            @RequestBody CapitalRequest capitalRequest) {
+
+        return openAiService.requestCapitalDetails(capitalRequest);
     }
 
 } /// :~

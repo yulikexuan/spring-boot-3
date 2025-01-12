@@ -127,6 +127,12 @@
 					<configuration>
 						<source>${java.version}</source>
 						<target>${java.version}</target>
+						<compilerArgs>
+							<!-- check this : Quality Outreach Heads-up - JDK 22: Annotation Processing Behavior Change
+								 URL: https://inside.java/2023/10/23/quality-heads-up
+							-->
+							<arg>-proc:full</arg>
+						</compilerArgs>
 					</configuration>
 				</plugin>
 
@@ -229,7 +235,7 @@
 		<module>spring-data</module>
 		<module>spring-web</module>
 		<module>spring-security</module>
-		<module>spring-ai-intro</module>
+		<module>spring-ai</module>
 	</modules>
 
 </project>

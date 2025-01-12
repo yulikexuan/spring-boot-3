@@ -67,3 +67,25 @@ Accept: application/json
         client.log(">>> Passed 1!");
     });
 %}
+
+
+### Request caital city details in json with schema
+
+// @connection-timeout 60 m
+POST {{host}}/spring-ai/capital-details-schema
+Content-Type: application/json
+Accept: application/json
+
+{ "countryOrState": "Greece" }
+
+> {%
+    client.log(response.body);
+
+    client.test("Validating the result", function () {
+        client.assert(response.body.capital === "Athens",
+            "The capital of Greece should be Athens");
+        client.assert(response.body.population >= 660000,
+            "The population of the capital should be greater than 660000");
+        client.log(">>> Passed 1!");
+    });
+%}
