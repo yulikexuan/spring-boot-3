@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: spring-ai-prompt-engineering
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}

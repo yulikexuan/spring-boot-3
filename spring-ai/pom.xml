@@ -48,12 +48,24 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+                <exclusion>
+                    <groupId>org.mockito</groupId>
+                    <artifactId>mockito-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.skyscreamer</groupId>
+                    <artifactId>jsonassert</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 
 	</dependencies>
 
 	<modules>
 		<module>spring-ai-intro</module>
+		<module>spring-ai-prompt-engineering</module>
+		<module>spring-ai-rag</module>
 	</modules>
 
 	<repositories>

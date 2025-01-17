@@ -1,0 +1,11 @@
+### Just Ask a Question
+
+POST {{host}}/spring-ai/rag/ask
+Content-Type: application/json
+Accept: application/json
+
+{ "question" : "Hi, do you know if Vector Database is easy to learn for a Java Developer?" }
+
+> {%
+    client.log(response.body.answer);
+  %}
