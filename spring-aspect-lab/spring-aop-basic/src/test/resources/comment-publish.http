@@ -1,0 +1,24 @@
+### Publish a Comment
+
+POST {{host}}/aop/comments/publish
+Content-Type: application/json
+Accept: application/json
+
+{ "author": "YU LI", "text" : "Trying spring-aop ... " }
+
+> {%
+    client.log(response.status === 200);
+  %}
+
+
+### Publish a Comment by Unauthorized Author
+
+POST {{host}}/aop/comments/publish
+Content-Type: application/json
+Accept: application/json
+
+{ "author": "YUL", "text" : "Trying spring-aop ... " }
+
+> {%
+    client.log(response.status === 403);
+%}

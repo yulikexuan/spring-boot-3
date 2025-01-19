@@ -4,8 +4,8 @@
 package app.domain.model;
 
 
-import lombok.Value;
 import lombok.AllArgsConstructor;
+import lombok.Value;
 import lombok.experimental.Accessors;
 
 

@@ -4,7 +4,7 @@ POST {{host}}/spring-ai/rag/ask
 Content-Type: application/json
 Accept: application/json
 
-{ "question" : "Hi, do you know if Vector Database is easy to learn for a Java Developer?" }
+{ "question" : "Hi, do you have any suggestion about Choose a Vector Database working with Spring AI? Please make your answer output has 80 charactors length per line." }
 
 > {%
     client.log(response.body.answer);
