@@ -1,6 +1,6 @@
 spring:
   application:
-    name: spring-ai-rag
+    name: spring-ai-rag-expert
   ai:
     openai:
       # Pass API key as environment variable, e.g. -DOPENAI_API_KEY=your-api-key
@@ -8,6 +8,9 @@ spring:
       embedding:
         options:
           model: text-embedding-3-small
+      chat:
+        options:
+          model: gpt-4-turbo
 sfg:
   aiapp:
     # vectorStorePath: "C:\\dev\\ai\\data\\vectorstore.json"

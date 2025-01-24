@@ -66,6 +66,7 @@
 		<module>spring-ai-intro</module>
 		<module>spring-ai-prompt-engineering</module>
 		<module>spring-ai-rag</module>
+		<module>spring-ai-rag-expert</module>
 	</modules>
 
 	<repositories>
