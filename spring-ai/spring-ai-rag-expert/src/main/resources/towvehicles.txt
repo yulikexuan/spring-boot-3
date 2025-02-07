@@ -1,0 +1,6 @@
+The Chevy Traverse costs $43000 dollars, and tow boats weighing up to 5000 lbs.
+The Chevy Colorado costs $55000 dollars, and tow boats weighing up to 7000 lbs.
+The Chevy 1500 costs $65000 dollars, and tow boats weighing up to 9100 lbs.
+The Chevy 2500 costs $75000 dollars, and tow boats weighing up to 14500 lbs.
+The Chevy 3500 costs $80000 dollars, and tow boats weighing up to 18500 lbs.
+The Chevy 3500 Duramax costs $90000 dollars, and tow boats weighing up to 36000 lbs.

@@ -13,7 +13,7 @@
 
     <logger name="org.springframework.transaction" level="DEBUG" />
     <logger name="org.jline" level="warn" />
-    <logger name="sfg6lab.ai" level="debug" />
+    <logger name="sfg6lab.ai.rag" level="debug" />
 
     <root level="info">
         <appender-ref ref="STDOUT" />
