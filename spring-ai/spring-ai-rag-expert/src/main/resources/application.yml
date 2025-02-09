@@ -27,9 +27,9 @@ spring:
 sfg:
   aiapp:
     # vectorStorePath: "C:\\dev\\ai\\data\\vectorstore.json"
-    # vectorStorePath: ${VECTOR_STORE_PATH}
+    vectorStorePath: ${VECTOR_STORE_PATH}
     documentsToLoad:
-      - classpath:/towvehicles.txt
+      - classpath:/towvehicles.csv
       # Sportsman 212 - Weight 3,458 lbs
       - https://yamahaoutboards.com/outboards/350-150-hp/in-line-4/f150-(i4)/pb_spt_open_212_f150xb_9-10-2020-occ
       # Sportsman 232 - Weight 5,001  lbs

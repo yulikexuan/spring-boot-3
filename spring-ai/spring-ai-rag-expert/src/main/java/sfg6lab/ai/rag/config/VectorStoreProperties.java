@@ -10,6 +10,6 @@ import java.util.List;
 
 
 @ConfigurationProperties(prefix = "sfg.aiapp")
-public record VectorStoreProperties(List<Resource> documentsToLoad) {
+public record VectorStoreProperties(String vectorStorePath, List<Resource> documentsToLoad) {
 
 } /// :~

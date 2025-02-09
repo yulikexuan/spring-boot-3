@@ -6,6 +6,7 @@ package sfg6lab.ai.rag.bootstrap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.ai.vectorstore.milvus.MilvusVectorStore;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import sfg6lab.ai.rag.config.VectorStoreProperties;
@@ -26,7 +27,7 @@ class LoadVectorStore implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if (vectorStore.similaritySearch(AI_SIMILARITY_CRITERIA_TEXT).isEmpty()) {
+        if (!vectorStore.similaritySearch(AI_SIMILARITY_CRITERIA_TEXT).isEmpty()) {
             log.debug(">>> Loading documents into Vector Store");
             vectorStoreProperties.documentsToLoad().forEach(
                     resource -> vectorStore.add(
