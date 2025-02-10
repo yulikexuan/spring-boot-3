@@ -1,4 +1,4 @@
-//: sfg6lab.ai.controller.web.function.OpenAiController.java
+//: sfg6lab.ai.controller.web.service.OpenAiController.java
 
 package sfg6lab.ai.function.web.controller;
 

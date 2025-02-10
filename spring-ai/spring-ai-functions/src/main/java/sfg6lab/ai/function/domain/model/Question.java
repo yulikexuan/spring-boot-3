@@ -1,4 +1,4 @@
-//: sfg6lab.ai.model.domain.function.Question.java
+//: sfg6lab.ai.model.domain.service.Question.java
 
 package sfg6lab.ai.function.domain.model;
 

@@ -6,11 +6,11 @@
 # What is a good truck to pull a Scout 380 LXF boat? Expected answer: Chevy 3500 Duramax
 
 
-POST {{host}}/spring-ai/rag/ask
+POST {{host}}/spring-ai/functions/weather
 Content-Type: application/json
 Accept: application/json
 
-{ "question" : "What is a good truck to pull a Sportsman 212 boat? " }
+{ "question" : "What is the weather in Saint-Laurent, Quebec, Canada? " }
 
 > {%
     client.log(response.body.answer);
