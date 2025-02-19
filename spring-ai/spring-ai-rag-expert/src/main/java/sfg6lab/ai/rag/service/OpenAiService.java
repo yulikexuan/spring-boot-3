@@ -59,7 +59,7 @@ final class OpenAiServiceImpl implements OpenAiService {
         // Search in Milvus & User Message
         List<String> contentList = vectorStore.similaritySearch(searchReq)
                 .stream()
-                .map(Document::getContent)
+                .map(Document::getText)
                 .toList();
         PromptTemplate promptTemplate = new PromptTemplate(ragPromptTemplate);
         Message userMessage = promptTemplate.createMessage
@@ -69,7 +69,7 @@ final class OpenAiServiceImpl implements OpenAiService {
         ChatResponse response = chatModel.call(
                 new Prompt(List.of(systemMessage, userMessage)));
 
-        return new Answer(response.getResult().getOutput().getContent());
+        return new Answer(response.getResult().getOutput().getText());
     }
 
 }

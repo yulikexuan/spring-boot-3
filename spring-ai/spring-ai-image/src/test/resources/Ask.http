@@ -1,0 +1,24 @@
+### Just Ask for a Image
+
+POST {{host}}/spring-ai/images/ask
+Content-Type: application/json
+
+{ "question" : "Hello, please generate an image to show that it’s a good practice of RESTful to return the URL of a newly created resource in the response when a client performs a POST request to create a new resource." }
+
+> {%
+    client.log(response.status === 200);
+  %}
+
+
+### Test OpenAI Vision
+
+POST {{host}}/spring-ai/images/vision
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="image_1.jpg"
+Content-Type: image/jpeg
+
+< ./image_1.jpg
+
+--boundary--

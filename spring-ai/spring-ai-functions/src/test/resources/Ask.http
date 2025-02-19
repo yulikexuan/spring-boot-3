@@ -1,9 +1,4 @@
-### Just Ask a Question
-
-# What is a good truck to pull a Sportsman 212 boat? Expected answer: Chevy Traverse
-# What is a good truck to pull a Sportsman 232 boat? Expected answer: Chevy Colorado
-# What is a good truck to pull a Sportsman 322 boat? Expected answer: Chevy 2500
-# What is a good truck to pull a Scout 380 LXF boat? Expected answer: Chevy 3500 Duramax
+### Just Ask a Question about the current weather of a city
 
 
 POST {{host}}/spring-ai/functions/weather

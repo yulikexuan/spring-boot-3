@@ -47,7 +47,7 @@ final class OpenAiServiceImpl implements OpenAiService {
 
         List<String> contentList = simpleVectorStore.similaritySearch(searchReq)
                 .stream()
-                .map(Document::getContent)
+                .map(Document::getText)
                 .toList();
 
         PromptTemplate promptTemplate = new PromptTemplate(ragPromptTemplate);
@@ -59,7 +59,7 @@ final class OpenAiServiceImpl implements OpenAiService {
 
         ChatResponse response = chatModel.call(prompt);
 
-        return new Answer(response.getResult().getOutput().getContent());
+        return new Answer(response.getResult().getOutput().getText());
     }
 
 }

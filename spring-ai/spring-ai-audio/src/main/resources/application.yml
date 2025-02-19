@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-ai-audio
+  ai:
+    openai:
+      # Pass API key as environment variable, e.g. -DOPENAI_API_KEY=your-api-key
+      api-key: ${OPENAI_API_KEY}

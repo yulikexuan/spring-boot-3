@@ -43,7 +43,7 @@ final class OpenAiServiceImpl implements OpenAiService {
         Prompt prompt = promptTemplate.create();
         ChatResponse chatResponse = chatModel.call(prompt);
 
-        return chatResponse.getResult().getOutput().getContent();
+        return chatResponse.getResult().getOutput().getText();
     }
 
     @Override
@@ -75,7 +75,7 @@ final class OpenAiServiceImpl implements OpenAiService {
 
         ChatResponse response = chatModel.call(prompt);
 
-        var content = response.getResult().getOutput().getContent();
+        var content = response.getResult().getOutput().getText();
 
         return converter.convert(content);
     }
@@ -95,7 +95,7 @@ final class OpenAiServiceImpl implements OpenAiService {
 
         ChatResponse response = chatModel.call(prompt);
 
-        var content = response.getResult().getOutput().getContent();
+        var content = response.getResult().getOutput().getText();
 
         return converter.convert(content);
     }
@@ -113,7 +113,7 @@ final class OpenAiServiceImpl implements OpenAiService {
 
         ChatResponse chatResponse = chatModel.call(prompt);
 
-        String answer = chatResponse.getResult().getOutput().getContent();
+        String answer = chatResponse.getResult().getOutput().getText();
 
         return new Answer(answer);
     }
