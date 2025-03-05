@@ -6,12 +6,16 @@ package sfg6lab.config;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import sfg6lab.domain.model.FileSystem;
 import sfg6lab.domain.model.Profile;
+import sfg6lab.domain.service.LocalKeycloakService;
 import sfg6lab.domain.service.MvnLocalRepositoryService;
 
 import java.nio.file.Path;
@@ -42,6 +46,17 @@ public class SpringEnvCfg {
     @Bean
     MvnLocalRepositoryService mvnLocalRepositoryService(Path mvnHome) {
         return MvnLocalRepositoryService.of(mvnHome);
+    }
+
+    @Bean
+    @ConditionalOnClass(LocalKeycloakService.class)
+    // @Conditional(TestingCondition.class)
+    // @ConditionalOnProperty(
+    //        name = "spirng.profiles.active",
+    //        havingValue = "test",
+    //        matchIfMissing = false)
+    LocalKeycloakService localKeycloakService() {
+        return LocalKeycloakService.localKeycloakService();
     }
 
 }///:~

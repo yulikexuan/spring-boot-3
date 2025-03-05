@@ -31,7 +31,7 @@ abstract class BasePromptEngineeringIT {
     }
 
     private static String getContent(@NonNull final ChatResponse chatResponse) {
-        return chatResponse.getResult().getOutput().getContent();
+        return chatResponse.getResult().getOutput().getText();
     }
 
 }

@@ -12,7 +12,12 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello!";
+        return ">>> Hello!";
+    }
+
+    @GetMapping("/boom")
+    public void boom() {
+        throw new IllegalStateException(">>> Boom!");
     }
 
 }

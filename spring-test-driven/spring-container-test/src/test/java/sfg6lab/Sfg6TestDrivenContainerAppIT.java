@@ -15,8 +15,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 import sfg6lab.config.*;
 import sfg6lab.domain.model.Profile;
+import sfg6lab.domain.service.LocalKeycloakService;
 import sfg6lab.domain.service.MvnLocalRepositoryService;
 import sfg6lab.service.TestDrivenMvnService;
 
@@ -41,13 +44,16 @@ import static org.mockito.BDDMockito.then;
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class Sfg6TestDrivenContainerAppIT {
 
-    @MockBean
+    @MockitoBean
+    private LocalKeycloakService localKeycloakService;
+
+    @MockitoBean
     private MvnLocalRepositoryService mvnLocalRepositoryService;
 
     @Autowired
     private FileSystemConfigProperties fileSystemConfigProperties;
 
-    @SpyBean
+    @MockitoSpyBean
     @Autowired
     private AuthorConfigProperties authorConfigProperties;
 
@@ -59,6 +65,7 @@ class Sfg6TestDrivenContainerAppIT {
 
     @BeforeEach
     void setUp() {
+        assertThat(localKeycloakService).isNotNull();
     }
 
     @Test

@@ -22,6 +22,7 @@ import java.nio.file.Path;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
 
@@ -49,7 +50,7 @@ class TestDrivenMvnServiceTest {
         // Given
         Path path = Files.currentFolder().toPath();
 
-        BDDMockito.given(this.mvnLocalRepositoryService.root()).willReturn(path);
+        given(this.mvnLocalRepositoryService.root()).willReturn(path);
 
         // When
         String actualPath = this.controller.mvnHome();

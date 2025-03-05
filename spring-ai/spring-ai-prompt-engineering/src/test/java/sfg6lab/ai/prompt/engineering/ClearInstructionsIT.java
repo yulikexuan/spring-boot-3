@@ -119,7 +119,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
             PromptTemplate promptTemplate = new PromptTemplate(
                     STORY_PROMPT, Map.of("text", STORY));
             System.out.println(chatModel.call(
-                    promptTemplate.create()).getResult().getOutput().getContent());
+                    promptTemplate.create()).getResult().getOutput().getText());
 
         }
 
@@ -193,7 +193,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
 
             System.out.println(
                     chatModel.call(promptTemplate.create())
-                            .getResult().getOutput().getContent());
+                            .getResult().getOutput().getText());
         }
 
     } //: End of SummarizingTextTest
@@ -263,7 +263,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
                             "review6", review6));
 
             System.out.println(chatModel.call(promptTemplate.create())
-                    .getResult().getOutput().getContent());
+                    .getResult().getOutput().getText());
         }
 
         String emotionPrompt = """
@@ -290,7 +290,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
                             "review6", review6));
 
             System.out.println(chatModel.call(promptTemplate.create())
-                    .getResult().getOutput().getContent());
+                    .getResult().getOutput().getText());
         }
 
         String angerTestPrompt = """
@@ -323,7 +323,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
                             "review6", review6));
 
             System.out.println(chatModel.call(promptTemplate.create())
-                    .getResult().getOutput().getContent());
+                    .getResult().getOutput().getText());
         }
 
         String topicStory = """
@@ -370,7 +370,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
                     Map.of("story", topicStory));
 
             System.out.println(chatModel.call(promptTemplate.create())
-                    .getResult().getOutput().getContent());
+                    .getResult().getOutput().getText());
         }
 
     } //: End of InferenceTest
@@ -442,7 +442,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
                         Map.of("review", UUID.randomUUID() + "\n" + review));
                 ChatResponse response = chatModel.call(promptTemplate.create());
                 System.out.println("#################################\n");
-                System.out.println(response.getResult().getOutput().getContent());
+                System.out.println(response.getResult().getOutput().getText());
             }
         }
 
@@ -468,7 +468,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
                 ChatResponse response = chatModel.call(prompt);
 
                 System.out.println("#################################\n");
-                System.out.println(response.getResult().getOutput().getContent());
+                System.out.println(response.getResult().getOutput().getText());
             }
 
         }
@@ -494,7 +494,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
             PromptTemplate promptTemplate =
                     new PromptTemplate(imitationInASentencePrompt);
             System.out.println(chatModel.call(promptTemplate.create())
-                    .getResult().getOutput().getContent());
+                    .getResult().getOutput().getText());
         }
 
         String vacationContextPrompt = """
@@ -508,7 +508,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
             PromptTemplate promptTemplate =
                     new PromptTemplate(vacationContextPrompt);
             System.out.println(chatModel.call(promptTemplate.create())
-                    .getResult().getOutput().getContent());
+                    .getResult().getOutput().getText());
         }
 
         String newMathBehaviorPrompt = """
@@ -526,14 +526,14 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
             PromptTemplate promptTemplate =
                     new PromptTemplate(newMathBehaviorPrompt);
             System.out.println(chatModel.call(promptTemplate.create())
-                    .getResult().getOutput().getContent());
+                    .getResult().getOutput().getText());
         }
 
         @Test
         void AI_Hallucination_Test() {
             Prompt prompt = new Prompt(
                     "Write sales copy for the new 'professional grade' Denali Advanced Toothbrush by GMC.");
-            System.out.println(chatModel.call(prompt).getResult().getOutput().getContent());
+            System.out.println(chatModel.call(prompt).getResult().getOutput().getText());
         }
 
     } //: End of ZeroAndFewShotTest
@@ -565,7 +565,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
             ChatResponse response = chatModel.call(promptTemplate.create());
 
             //models previously would answer 27
-            System.out.println(response.getResult().getOutput().getContent());
+            System.out.println(response.getResult().getOutput().getText());
         }
 
         @Test
@@ -584,7 +584,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
 
             PromptTemplate promptTemplate = new PromptTemplate(chainOfThoughtPrompt);
             ChatResponse response = chatModel.call(promptTemplate.create());
-            System.out.println(response.getResult().getOutput().getContent());
+            System.out.println(response.getResult().getOutput().getText());
         }
 
         @Test
@@ -601,7 +601,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
             ChatResponse response = chatModel.call(promptTemplate.create());
 
             //models previously would answer 27
-            System.out.println(response.getResult().getOutput().getContent());
+            System.out.println(response.getResult().getOutput().getText());
         }
 
     } //: ChainOfThoughtReasoningTest
@@ -630,7 +630,7 @@ class ClearInstructionsIT extends BasePromptEngineeringIT {
             List<Message> messages = List.of(javaSystemMessage, userMessage);
             Prompt prompt = new Prompt(messages);
 
-            System.out.println(chatModel.call(prompt).getResult().getOutput().getContent());
+            System.out.println(chatModel.call(prompt).getResult().getOutput().getText());
         }
 
     } //: SystemMessagePromptTest

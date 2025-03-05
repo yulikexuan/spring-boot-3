@@ -1,24 +1,8 @@
-### Just Ask for a Image
+### Test OpenAI Speech
 
-POST {{host}}/spring-ai/images/ask
+
+POST {{host}}/spring-ai/speech
 Content-Type: application/json
+Accept: audio/mpeg
 
-{ "question" : "Hello, please generate an image of the USS New Jersey Warship passing the British Parliament with the word ITOPIA printed on the front of the warship's body." }
-
-> {%
-    client.log(response.status === 200);
-  %}
-
-
-### Test OpenAI Vision
-
-POST {{host}}/spring-ai/images/vision
-Content-Type: multipart/form-data; boundary=boundary
-
---boundary
-Content-Disposition: form-data; name="file"; filename="image_1.jpg"
-Content-Type: image/jpeg
-
-< ./image_1.jpg
-
---boundary--
+{ "question" : "In a small village nestled at the foot of a daunting mountain, lived an eternal optimist named Ellie." }
