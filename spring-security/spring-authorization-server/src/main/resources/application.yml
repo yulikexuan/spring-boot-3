@@ -1,0 +1,5 @@
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:yulikexuan.spring.boot.3.p12
+    key-store-password: D99FD77F

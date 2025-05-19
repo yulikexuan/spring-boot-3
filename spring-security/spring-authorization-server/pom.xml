@@ -13,17 +13,17 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-security-basic</artifactId>
+    <artifactId>spring-authorization-server</artifactId>
     <packaging>jar</packaging>
 
-    <name>spring-security-basic</name>
-    <description>The Basic of Spring Security</description>
+    <name>spring-authorization-server</name>
+    <description>The Authorization Server</description>
 
     <dependencies>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
         </dependency>
 
     </dependencies>

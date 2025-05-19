@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import sfg6lab.domain.model.GeometryProperties;
 import sfg6lab.domain.model.Photo;
 import sfg6lab.domain.service.FileDownloadingService;
@@ -52,7 +53,7 @@ class Sfg6BeanValidationIT {
     @Nested
     class SpringValidationIT {
 
-        @MockBean
+        @MockitoBean
         private FileDownloadingService fileDownloadingService;
 
         @Autowired

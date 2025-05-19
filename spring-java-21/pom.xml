@@ -32,6 +32,7 @@
         <module>jep441-pattern-matching-switch</module>
         <module>jep431-sequenced-collections</module>
         <module>jep444-virtual-threads</module>
+        <module>ocp</module>
     </modules>
 
 </project>

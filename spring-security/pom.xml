@@ -28,11 +28,6 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
@@ -65,6 +60,7 @@
 
     <modules>
         <module>spring-security-basic</module>
+        <module>spring-authorization-server</module>
     </modules>
 
 </project>

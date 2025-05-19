@@ -8,22 +8,29 @@
 
     <parent>
         <groupId>spring.start.here</groupId>
-        <artifactId>spring-security</artifactId>
+        <artifactId>spring-java-21</artifactId>
         <version>2024-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-security-basic</artifactId>
+    <artifactId>ocp</artifactId>
     <packaging>jar</packaging>
 
-    <name>spring-security-basic</name>
-    <description>The Basic of Spring Security</description>
+    <name>ocp</name>
+    <description>Testing Liskov Substitution Principle</description>
 
     <dependencies>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
