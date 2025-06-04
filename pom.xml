@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0-RC1</version>
+		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -27,11 +27,11 @@
 		<p6spy.version>1.9.1</p6spy.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<spring-shell.version>3.2.2</spring-shell.version>
+		<spring-shell.version>3.4.0</spring-shell.version>
 		<guava.version>33.0.0-jre</guava.version>
 		<byte-buddy.version>1.14.17</byte-buddy.version>
 		<datasource-proxy-spring-boot-starter.version>
-			1.9.1
+			1.11.0
 		</datasource-proxy-spring-boot-starter.version>
 		<slf4j2-mock.version>2.3.0</slf4j2-mock.version>
 	</properties>

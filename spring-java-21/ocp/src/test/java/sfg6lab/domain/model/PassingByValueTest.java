@@ -43,4 +43,14 @@ class PassingByValueTest {
         assertThat(newNums).containsExactly(ORIGINAL_1, ORIGINAL_2);
     }
     
+    @Test
+    void auto_Boxing() {
+    
+        // Given
+        int num = 9;
+        
+        // When
+        // Long longer = num;
+    }
+    
 }

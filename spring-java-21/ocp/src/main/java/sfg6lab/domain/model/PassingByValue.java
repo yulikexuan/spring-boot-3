@@ -8,8 +8,8 @@ class PassingByValue {
     static final int INITIAL_NUMBER = 4;
     static final int NEW_NUMBER = 8;
     
-    static final int ORIGINAL_1 = 1;
-    static final int ORIGINAL_2 = 2;
+    static final int ORIGINAL_1 = 11;
+    static final int ORIGINAL_2 = 22;
     
     static int num_1;
     static int num_2;

@@ -13,6 +13,7 @@
 
 ### Create a new maven Settings.xml file in ` .m2 ` folder
   - Add a new line into the new Settings.xml file
+  - File name: settings_spring.xml
     - ` <localRepository>C:/Users/yul/.m2/spring/repository</localRepository> `
 
 ### Open ` Settings ` Dialog Window
