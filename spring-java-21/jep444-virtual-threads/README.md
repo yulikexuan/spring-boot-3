@@ -101,6 +101,168 @@ public class ThreadMemoryComparison {
 }
 ```
 
-### 2. Throughput Comparison
-Create a simple benchmark application that:
-1. Creates N tasks with platform threads (thread pool)
+### 2. Throughput Benchmark
+
+1. Create a test that simulates your application's workload:
+
+``` 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.concurrent.*;
+import java.util.stream.IntStream;
+
+public class ThroughputBenchmark {
+    private static final int REQUEST_COUNT = 1000;
+    private static final String TEST_URL = "http://localhost:8080/api/test"; // Use your API endpoint
+    
+    public static void main(String[] args) throws Exception {
+        // With platform threads
+        long platformThreadDuration = measureExecutionTime(() -> {
+            try (ExecutorService executor = Executors.newFixedThreadPool(200)) {
+                executeHttpRequests(executor, REQUEST_COUNT);
+            }
+        });
+        
+        // With virtual threads
+        long virtualThreadDuration = measureExecutionTime(() -> {
+            try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+                executeHttpRequests(executor, REQUEST_COUNT);
+            }
+        });
+        
+        System.out.println("Platform threads execution time: " + platformThreadDuration + "ms");
+        System.out.println("Virtual threads execution time: " + virtualThreadDuration + "ms");
+        System.out.println("Performance improvement: " + 
+                          (100 - (virtualThreadDuration * 100.0 / platformThreadDuration)) + "%");
+    }
+    
+    private static void executeHttpRequests(ExecutorService executor, int count) {
+        CountDownLatch latch = new CountDownLatch(count);
+        HttpClient client = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(TEST_URL))
+            .timeout(Duration.ofSeconds(5))
+            .GET()
+            .build();
+            
+        IntStream.range(0, count).forEach(i -> {
+            executor.submit(() -> {
+                try {
+                    client.send(request, HttpResponse.BodyHandlers.discarding());
+                    latch.countDown();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+        
+        try {
+            latch.await(5, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    
+    private static long measureExecutionTime(Runnable task) {
+        Instant start = Instant.now();
+        task.run();
+        Instant end = Instant.now();
+        return Duration.between(start, end).toMillis();
+    }
+}
+```
+
+### 3. Scalability Test
+
+1. Create a test that demonstrates how virtual threads handle increasing-load
+
+``` 
+import java.util.concurrent.*;
+import java.time.Duration;
+import java.time.Instant;
+
+public class ScalabilityTest {
+    private static final int[] THREAD_COUNTS = {1000, 5000, 10000, 50000, 100000};
+    
+    public static void main(String[] args) {
+        System.out.println("Thread Count,Platform Threads (ms),Virtual Threads (ms),Improvement (%)");
+        
+        for (int count : THREAD_COUNTS) {
+            // Platform threads
+            long platformDuration = testPlatformThreads(count);
+            
+            // Virtual threads
+            long virtualDuration = testVirtualThreads(count);
+            
+            double improvement = 100 - (virtualDuration * 100.0 / platformDuration);
+            System.out.printf("%d,%d,%d,%.2f%%\n", count, platformDuration, virtualDuration, improvement);
+        }
+    }
+    
+    private static long testPlatformThreads(int threadCount) {
+        try {
+            int poolSize = Math.min(threadCount, 200); // Practical platform thread limit
+            Instant start = Instant.now();
+            
+            try (ExecutorService executor = Executors.newFixedThreadPool(poolSize)) {
+                CountDownLatch latch = new CountDownLatch(threadCount);
+                
+                for (int i = 0; i < threadCount; i++) {
+                    executor.submit(() -> {
+                        try {
+                            simulateWork();
+                            latch.countDown();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                
+                latch.await(5, TimeUnit.MINUTES);
+            }
+            
+            return Duration.between(start, Instant.now()).toMillis();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    
+    private static long testVirtualThreads(int threadCount) {
+        try {
+            Instant start = Instant.now();
+            
+            try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
+                CountDownLatch latch = new CountDownLatch(threadCount);
+                
+                for (int i = 0; i < threadCount; i++) {
+                    executor.submit(() -> {
+                        try {
+                            simulateWork();
+                            latch.countDown();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                
+                latch.await(5, TimeUnit.MINUTES);
+            }
+            
+            return Duration.between(start, Instant.now()).toMillis();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    
+    private static void simulateWork() throws Exception {
+        // Simulate I/O-bound work (blocking operations)
+        Thread.sleep(100); // Simulate network/DB call
+    }
+}
+```
