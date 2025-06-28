@@ -1,0 +1,6 @@
+1.  Defining multiple top-level classes in a Single Source File 
+      - There are no benefits associated with doing so, and there are significant risks.
+2.  The risks stem from the fact that defining multiple top-level classes in a source file makes it possible to provide multiple definitions for a class
+      - Which definition gets used is affected by the order in which the source files are passed to the compiler
+3.  If you are tempted to put multiple top-level classes into a single source file 
+      - Consider using static member classes (Item 24) as an alternative 

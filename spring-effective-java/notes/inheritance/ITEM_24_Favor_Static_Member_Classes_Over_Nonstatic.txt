@@ -1,0 +1,1 @@
+1.  A class whose instances come in two or more flavors and contain a tag field indicating the flavor of the instance

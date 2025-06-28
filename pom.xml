@@ -223,6 +223,7 @@
 	</build>
 
 	<modules>
+		<module>spring-effective-java</module>
 		<module>spring-java-21</module>
 		<module>spring-solid</module>
 		<module>spring-container-lab</module>

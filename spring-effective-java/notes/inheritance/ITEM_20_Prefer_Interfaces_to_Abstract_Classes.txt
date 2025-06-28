@@ -1,0 +1,13 @@
+1.  When there is an obvious implementation of an interface method in terms of other interface methods 
+      - consider providing implementation assistance to programmers in the form of a default method
+      - If you provide default methods, be sure to document them for inheritance using the @implSpec Javadoc tag (Item 19) 
+
+2.  There are limits on how much implementation assistance you can provide with default methods 
+      - Although many interfaces specify the behavior of Object methods such as equals and hashCode, you are not permitted to provide default methods for them. 
+      - Also, interfaces are not permitted to contain instance fields or nonpublic static members (with the exception of private static methods). 
+      - Finally, you can't add default methods to an interface that you don't control.
+
+3.  Combine the advantages of interfaces and abstract classes by providing an abstract skeletal implementation class to go with an interface
+      - good documentation is absolutely essential in a skeletal implementation
+          - whether it consists of default methods on an interface or a separate abstract class.
+      - To the extent possible, you should provide the skeletal implementation via default methods on the interface so that all implementors of the interface can make use of it.

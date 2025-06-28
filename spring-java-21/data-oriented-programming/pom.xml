@@ -8,32 +8,31 @@
 
     <parent>
         <groupId>spring.start.here</groupId>
-        <artifactId>spring-boot-3</artifactId>
+        <artifactId>spring-java-21</artifactId>
         <version>2024-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-java-21</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>data-oriented-programming</artifactId>
+    <packaging>jar</packaging>
 
-    <name>spring-java-21</name>
-    <description>The Lab of Java 21 New Features</description>
+    <name>data-oriented-programming</name>
+    <description>Learn Data Oriented Programming</description>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-json</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
-    </dependencies>
 
-    <modules>
-        <module>data-oriented-programming</module>
-        <module>jep430-string-templates</module>
-        <module>jep450-record-pattern</module>
-        <module>jep441-pattern-matching-switch</module>
-        <module>jep431-sequenced-collections</module>
-        <module>jep444-virtual-threads</module>
-        <module>ocp</module>
-    </modules>
+    </dependencies>
 
 </project>

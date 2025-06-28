@@ -13,11 +13,11 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>spring-java-21</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>spring-effective-java</artifactId>
+    <packaging>jar</packaging>
 
-    <name>spring-java-21</name>
-    <description>The Lab of Java 21 New Features</description>
+    <name>spring-effective-java</name>
+    <description>The Lab of Effective Java 3</description>
 
     <dependencies>
         <dependency>
@@ -25,15 +25,5 @@
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
     </dependencies>
-
-    <modules>
-        <module>data-oriented-programming</module>
-        <module>jep430-string-templates</module>
-        <module>jep450-record-pattern</module>
-        <module>jep441-pattern-matching-switch</module>
-        <module>jep431-sequenced-collections</module>
-        <module>jep444-virtual-threads</module>
-        <module>ocp</module>
-    </modules>
 
 </project>

@@ -1,0 +1,3 @@
+1.  The constant interface pattern is a poor use of interfaces
+      - That a class uses some constants internally is an implementation detail 
+          - Implementing a constant interface causes this implementation detail to leak into the class’s exported API

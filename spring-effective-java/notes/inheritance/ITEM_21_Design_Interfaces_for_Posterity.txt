@@ -1,0 +1,5 @@
+1.  It is not always possible to write a default method that maintains all invariants of every conceivable implementation.
+2.  In the presence of default methods, existing implementations of an interface may compile without error or warning but fail at runtime.
+3.  Using default methods to add new methods to existing interfaces should be avoided unless the need is critical, 
+      - in which case you should think long and hard about whether an existing interface implementation might be broken by your default method implementation.
+4.  Default methods are, however, extremely useful for providing standard method implementations when an interface is created, to ease the task of implementing the interface
